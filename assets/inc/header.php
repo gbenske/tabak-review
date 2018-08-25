@@ -6,7 +6,11 @@
 				{
 					$identification = $_SESSION["userid"];
 					?>
-						<a href='logout.php'>Abmelden</a>
+						<ul>
+							<li><a href='logout.php'>Abmelden</a></li>
+							<li><a href='addTabak.php'>Tabak einfügen</a></li>
+						</ul>
+
 					<?php
 				}
 				else

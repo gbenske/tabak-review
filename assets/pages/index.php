@@ -19,9 +19,9 @@
 
 		<?php foreach ($tabaksorten as $tabak) { ?>
 			<div class="col">
-				<h2><?php echo $tabak['Hersteller'] ?></h2>
-				<div class="sort"><?php echo $tabak['Sorte'] ?></div>
-				<div class="rating"><?php echo $tabak['Bewertung'] ?></div>
+				<h2><?php echo $tabak['hersteller'] ?></h2>
+				<div class="sort"><?php echo $tabak['sorte'] ?></div>
+				<div class="rating"><?php echo $tabak['bewertung'] ?></div>
 			</div>
 		<?php } ?>
 
