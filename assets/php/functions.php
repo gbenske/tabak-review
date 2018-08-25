@@ -23,15 +23,15 @@ function query(PDO $connection, $sql, $bindings)
     return $results ? $results : false;
 }
 
-function idKunde(PDO $connection)
+function userLogIn(PDO $connection)
 {
-	$Kennung = $_SESSION["userid"];
+	$identification = $_SESSION["userid"];
 
-	$sql= "SELECT ID_Kunde FROM kunden WHERE ID_Kunde = '$Kennung'";
-	$result = query($connection, $sql, ["$Kennung" => $Kennung]);
-	$ID_Kunde = (string)$result[0]['ID_Kunde'];
+	$sql= "SELECT ID_User FROM user WHERE ID_User = '$identification'";
+	$result = query($connection, $sql, ["$identification" => $identification]);
+	$ID_User = (string)$result[0]['ID_User'];
 
-	return($ID_Kunde);
+	return($ID_User);
 }
 
 

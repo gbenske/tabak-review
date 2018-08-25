@@ -1,25 +1,26 @@
-<div class="container">
+<div class="wrapper">
 <?php
-require 'php/bootstrap.php';
-include 'inc/head.php';
-include 'inc/header.php';
+
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/tabak-review/assets/php/bootstrap.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/tabak-review/assets/inc/head.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/tabak-review/assets/inc/header.php";
 
 if(isset($_GET['login'])) {
-    $email = $_POST['email'];
+    $loginname = $_POST['loginname'];
     $passwort = $_POST['passwort'];
 
-    $statement = $pdo->prepare("SELECT * FROM kunden WHERE email = :email");
-    $result = $statement->execute(array('email' => $email));
+    $statement = $pdo->prepare("SELECT * FROM user WHERE loginname = :loginname");
+    $result = $statement->execute(array('loginname' => $loginname));
     $user = $statement->fetch();
 
 
 
     //Überprüfung des Passworts
     if ($user !== false && password_verify($passwort, $user['passwort'])) {
-        $_SESSION['userid'] = $user['ID_Kunde'];
+        $_SESSION['userid'] = $user['ID_User'];
         header("Location: index.php");
     } else {
-        $errorMessage = "E-Mail oder Passwort war ungültig";
+        $errorMessage = "Benutzername oder Passwort war ungültig";
     }
 
 }
@@ -35,14 +36,13 @@ if(isset($_GET['login'])) {
 
 </div>
 
-<div>,
+<div>
     <h3>Anmelden</h3>
         <div>
             <form action="?login" method="post">
                 Benutzername:<br>
                 <br>
-                <input type="text" name="login">
-
+                <input type="text" name="loginname">
                 Dein Passwort:<br>
                 <br>
                 <input type="password" size="40"  maxlength="250" name="passwort"><br>
@@ -60,7 +60,7 @@ if(isset($_GET['login'])) {
 
 <div class="footer_login">
     <?php
-        include 'inc/footer.php';
+         include_once $_SERVER['DOCUMENT_ROOT'] . "/tabak-review/assets/inc/footer.php";
     ?>
 </div>
 </body>

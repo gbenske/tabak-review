@@ -12,16 +12,21 @@
 	$tabaksorten = $statement ->fetchALL();
 ?>
 
-<h1>Tabak Review GB</h1>
+	<div class="wrapper">
+		<h1>Tabak Review GB</h1>
 
-<?php foreach ($tabaksorten as $tabak) { ?>
-	<div>
-		<?php echo $tabak['Hersteller'] ?>
-		<?php echo $tabak['Sorte'] ?>
-		<?php echo $tabak['Geschmack'] ?>
-		<?php echo $tabak['Bewertung'] ?>
+		<div class="flex-grid">
+
+		<?php foreach ($tabaksorten as $tabak) { ?>
+			<div class="col">
+				<h2><?php echo $tabak['Hersteller'] ?></h2>
+				<div class="sort"><?php echo $tabak['Sorte'] ?></div>
+				<div class="rating"><?php echo $tabak['Bewertung'] ?></div>
+			</div>
+		<?php } ?>
+
+		</div>
 	</div>
-<?php } ?>
 
 <?php 
 	include_once $_SERVER['DOCUMENT_ROOT'] . "/tabak-review/assets/inc/footer.php";
