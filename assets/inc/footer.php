@@ -1,7 +1,6 @@
-		<div class="wrapper">
 			<footer>
-				
+				<div class="wrapper">
+				</div>
 	        </footer>
-		</div>
     </body>
 </html>

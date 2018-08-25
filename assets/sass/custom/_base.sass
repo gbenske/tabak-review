@@ -28,9 +28,23 @@ body
 	header
 		background-color: $color-light-grey
 		padding: 48px 0
-		display: flex
-		flex-wrap: wrap
-		justify-content: flex-end
+		
+		ul
+			display: flex
+			flex-wrap: wrap
+			justify-content: flex-end
+
+			li 
+				padding: 0 12px
+
+				&:last-child
+					padding-right: 0;
+
+	form
+
+		input
+			display: block
+			margin-bottom: 15px
 
 	footer
 		background-color: $color-light-grey

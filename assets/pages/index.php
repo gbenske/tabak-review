@@ -6,6 +6,12 @@
 
 ?>
 
+<?php
+	$selectImage = $pdo->prepare("SELECT * FROM images ");
+	$selectImage->setFetchMode(PDO::FETCH_ASSOC);
+	$selectImage->execute();
+?>
+
  <?php 
 	$sql = "SELECT * FROM tabak";
 	$statement = $pdo->query($sql);
@@ -16,6 +22,13 @@
 		<h1>Tabak Review GB</h1>
 
 		<div class="flex-grid">
+
+		<?php foreach ($selectImage as $image) { ?>
+			<div class="col">
+				<img src="../img/<?php echo $image['images']; ?>">
+			</div>
+		<?php } ?>
+
 
 		<?php foreach ($tabaksorten as $tabak) { ?>
 			<div class="col">

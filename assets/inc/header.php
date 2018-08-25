@@ -1,24 +1,24 @@
 <body>
-	<div class="wrapper">
-		<header>
+	<header>
+		<div class="wrapper">
 			<?php
-				if(isset($_SESSION["userid"]))
-				{
+				if(isset($_SESSION["userid"])) {
 					$identification = $_SESSION["userid"];
 					?>
 						<ul>
-							<li><a href='logout.php'>Abmelden</a></li>
+							<li><a href="index.php">Start</a></li>
 							<li><a href='addTabak.php'>Tabak einfügen</a></li>
+							<li><a href='logout.php'>Abmelden</a></li>
 						</ul>
-
 					<?php
-				}
-				else
-				{
+				} else {
 					?>
-						<a href='login.php'>Anmelden</a>
+						<ul>
+							<li><a href="index.php">Start</a></li>
+							<li><a href='login.php'>Anmelden</a></li>
+						</ul>
 					<?php
 				}
 			?>
-		</header>
-	</div>
+		</div>
+	</header>

@@ -1,4 +1,3 @@
-<div class="wrapper">
 <?php
 
     include_once $_SERVER['DOCUMENT_ROOT'] . '/tabak-review/assets/php/bootstrap.php';
@@ -25,44 +24,29 @@ if(isset($_GET['login'])) {
 
 }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-</head>
-<body>
-<div>
-    <h2>Anmelden</h2>
 
-</div>
+<div class="wrapper">
+    <h1>Anmelden</h1>
 
-<div>
-    <h3>Anmelden</h3>
         <div>
             <form action="?login" method="post">
-                Benutzername:<br>
-                <br>
+                <label>Benutzername:</label>
                 <input type="text" name="loginname">
-                Dein Passwort:<br>
+                
+                <label>Passwort</label>
+                <input type="password" name="passwort"><br>
                 <br>
-                <input type="password" size="40"  maxlength="250" name="passwort"><br>
-                <br>
-                <input class="button_2" type="submit" value="Anmelden">
+                <input type="submit" value="Anmelden">
             </form>
-                <?php
-                    if(isset($errorMessage)) {
-                        echo $errorMessage;
-                    }
-                ?>
+
+            <?php
+                if(isset($errorMessage)) {
+                    echo $errorMessage;
+                }
+            ?>
         </div>
 </div>
 
-
-<div class="footer_login">
-    <?php
-         include_once $_SERVER['DOCUMENT_ROOT'] . "/tabak-review/assets/inc/footer.php";
-    ?>
-</div>
-</body>
-</html>
-</div>
+<?php
+     include_once $_SERVER['DOCUMENT_ROOT'] . "/tabak-review/assets/inc/footer.php";
+?>
