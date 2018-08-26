@@ -9,31 +9,41 @@
     if(isset($_GET['rating'])) {
      $error = false;
      $producer = $_POST['hersteller'];
-     $sort = $_POST['sorte'];
-     $taste = $_POST['geschmack'];
-     $rating = $_POST['bewertung'];
+    // $sort = $_POST['sorte'];
+    // $taste = $_POST['geschmack'];
+    // $rating = $_POST['bewertung'];
 
-     $folder = "../img/";
-     $image = $_FILES['image']['name'];
-     $path = $folder . $image; 
-     $target_file=$folder.basename($_FILES["image"]["name"]);
-     $imageFileType=pathinfo($target_file,PATHINFO_EXTENSION);
-     $allowed=array('jpeg','png' ,'jpg'); 
-     $filename=$_FILES['image']['name']; 
- 
+    // $folder = "../img/";
+    // $image = $_FILES['image']['name'];
+    // $path = $folder . $image; 
+    // $target_file=$folder.basename($_FILES["image"]["name"]);
+    // $imageFileType=pathinfo($target_file,PATHINFO_EXTENSION);
+    // $allowed=array('jpeg','png' ,'jpg'); 
+    // $filename=$_FILES['image']['name']; 
+
     //Überprüfe, ob Tabakhersteller schon vorhanden ist
     if(!$error) { 
-            $statement = $pdo->prepare("SELECT * FROM tabak WHERE hersteller = :hersteller");
-            $result = $statement->execute(array('hersteller' => $producer));
-            $user = $statement->fetch();
+            $statement = $pdo->prepare("SELECT * FROM hersteller WHERE Name = :Name");
+            $result = $statement->execute(array('Name' => $producer));
+            $tabakproducer = $statement->fetch();
      
-        if($user !== false) {
+        if($tabakproducer !== false) {
                 echo 'Dieser Hersteller ist bereits gespeichert!';
             $error = true;
-         } 
+         }  else {
+            $statement = $pdo->prepare("INSERT INTO hersteller (Name) VALUES (:Name)");
+            $result = $statement->execute(array('Name' => $producer));
+
+            if($result) { 
+                echo 'Hersteller wurde hinzufügt.';
+            } else {
+                echo 'Beim Abspeichern ist leider ein Fehler aufgetreten';
+            }
+         }
      }
 
     //Überprüfe, ob Tabaksorte schon vorhanden ist
+     /*
     if(!$error) { 
             $statement = $pdo->prepare("SELECT * FROM tabak WHERE sorte = :sorte");
             $result = $statement->execute(array('sorte' => $sort));
@@ -61,7 +71,7 @@
             $statementImage->execute(); 
 
             echo "Bild wurde hochgeladen";
-        }
+        } 
 
         $statement = $pdo->prepare("INSERT INTO tabak (hersteller, sorte, geschmack, bewertung) VALUES (:hersteller, :sorte, :geschmack, :bewertung)");
         $result = $statement->execute(array('hersteller' => $producer, 'sorte' => $sort, 'geschmack' => $taste, 'bewertung' => $rating));
@@ -71,9 +81,15 @@
         } else {
             echo 'Beim Abspeichern ist leider ein Fehler aufgetreten';
         }
-    } 
+    }  */
 }
+?>
 
+<?php
+
+    $statement = $pdo->prepare("SELECT * FROM hersteller");
+    $statement->execute();
+    $tabakproducer = $statement->fetchALL();
 ?>
 
 <div class="wrapper">
@@ -81,10 +97,16 @@
 
      <form action="?rating" method="post" enctype="multipart/form-data">
 
-        <input type="file" name="image" />
-
         <label>Hersteller</label>
-        <input type="text" name="hersteller" />
+         <select>
+            <?php foreach ($tabakproducer as $tabak): ?>
+                 <option value="<?= $tabak['ID_Hersteller']; ?>"><?= $tabak['Name']; ?></option>
+            <?php endforeach ?>
+        </select>
+
+        
+
+        <?php /*
 
         <label>Sorte</label>
         <input type="text" name="sorte" />
@@ -94,6 +116,12 @@
 
         <label>Bewertung</label>
         <input type="text" name="bewertung" />
+
+         <input type="file" name="image" />
+
+        */
+
+        ?>
 
         <input type="submit" value="Bewerten" />
     </form>
