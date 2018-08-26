@@ -4,12 +4,21 @@
     include_once $_SERVER['DOCUMENT_ROOT'] . "/tabak-review/assets/inc/header.php";
 ?>
 
+<?php 
+
+    $statement = $pdo->prepare("SELECT * FROM hersteller");
+    $statement->execute();
+    $tabakproducer = $statement->fetchALL();
+
+?>
+
 <?php
  
     if(isset($_GET['rating'])) {
     $error = false;
     $producer = $_POST['hersteller'];
-    // $sort = $_POST['sorte'];
+    $addProducer = $_POST['addHersteller'];
+    $sort = $_POST['sorte'];
     // $taste = $_POST['geschmack'];
     // $rating = $_POST['bewertung'];
 
@@ -21,40 +30,61 @@
     // $allowed=array('jpeg','png' ,'jpg'); 
     // $filename=$_FILES['image']['name']; 
 
-    //Überprüfe, ob Tabakhersteller schon vorhanden ist
-    if(!$error) { 
-            $statement = $pdo->prepare("SELECT * FROM hersteller WHERE Name = :Name");
-            $result = $statement->execute(array('Name' => $producer));
-            $tabakproducer = $statement->fetch();
-     
-        if($tabakproducer !== false) {
-                echo 'Dieser Hersteller ist bereits gespeichert!';
-            $error = true;
-         }  else {
-            $statement = $pdo->prepare("INSERT INTO hersteller (Name) VALUES (:Name)");
-            $result = $statement->execute(array('Name' => $producer));
-
-            if($result) { 
-                echo 'Hersteller wurde hinzufügt.';
-            } else {
-                echo 'Beim Abspeichern ist leider ein Fehler aufgetreten';
-            }
-         }
-     }
-
     //Überprüfe, ob Tabaksorte schon vorhanden ist
-     /*
     if(!$error) { 
-            $statement = $pdo->prepare("SELECT * FROM tabak WHERE sorte = :sorte");
-            $result = $statement->execute(array('sorte' => $sort));
-            $user = $statement->fetch();
+            $statement = $pdo->prepare("SELECT * FROM sorte WHERE Name = :Name");
+            $result = $statement->execute(array('Name' => $sort));
+            $tabaksort = $statement->fetch();
      
-        if($user !== false) {
+        if($tabaksort !== false) {
                 echo 'Diese Sorte ist bereits gespeichert!';
             $error = true;
-         } 
-     }
- 
+         } else {
+
+            if(isset($_POST['hersteller'])) {
+                $statement = $pdo->prepare("INSERT INTO sorte (ID_Hersteller, Name) VALUES (:ID_Hersteller, :Name)");
+                $result = $statement->execute(array('ID_Hersteller' => $producer, 'Name' => $sort));
+
+                if($result) { 
+                    echo 'Sorte wurde hinzufügt.';
+                } else {
+                    echo 'Beim Abspeichern ist leider ein Fehler aufgetreten';
+                }
+            }
+
+            if($producer == '') {
+                if (!empty($_POST['addHersteller'])) {
+                    
+                    //Überprüfe, ob Tabakhersteller schon vorhanden ist
+                      if(!$error) { 
+                            $statement = $pdo->prepare("SELECT * FROM hersteller WHERE Name = :Name");
+                            $result = $statement->execute(array('Name' => $addProducer));
+                            $tabakproducer = $statement->fetch();
+                         
+                            if($tabakproducer !== false) {
+                                    echo 'Dieser Hersteller ist bereits gespeichert!';
+                                $error = true;
+                             }  else {
+                                $statement = $pdo->prepare("INSERT INTO hersteller (Name) VALUES (:Name)");
+                                $result = $statement->execute(array('Name' => $addProducer));
+
+                               if (isset($_POST['addProducer'])) {
+                                    if($result) { 
+                                        echo 'Hersteller wurde hinzufügt.';
+                                    } else {
+                                        echo 'Beim Abspeichern ist leider ein Fehler aufgetreten';
+                                    }
+                               }
+                             }
+                         }
+                    } else {
+                        echo "Bitte Hersteller anlegen.";
+                    }
+                }
+            }
+        }
+
+    /*
     //Keine Fehler, Bild und Tabak kann eingefügt werden
     if(!$error) { 
 
@@ -85,45 +115,44 @@
 }
 ?>
 
-<?php
-
-    $statement = $pdo->prepare("SELECT * FROM hersteller");
-    $statement->execute();
-    $tabakproducer = $statement->fetchALL();
-?>
-
 <div class="wrapper" id="form">
      <h1>Neuen Tabak hinzufügen</h1>
 
      <form action="?rating" method="post" enctype="multipart/form-data">
 
+        <a href="javascript:void(0)" id="add_input_producer">Neuen Hersteller hinzufügen</a>
+        <br/>
+        <br/>
+
+        <div id="producer">
+            <label>Hersteller hinzufügen</label>
+            <input type="text" name="addHersteller" />
+            <input type="submit" name="addProducer" value="Hersteller hinzufügen" />
+       </div>
+
+       
         <label>Hersteller</label>
-         <select>
-            <option disabled selected value> -- Wähle einen Tabakhersteller aus -- </option>
+         <select name="hersteller">
+            <option disabled selected value=""> -- Wähle einen Tabakhersteller aus -- </option>
             <?php foreach ($tabakproducer as $tabak): ?>
                  <option value="<?= $tabak['ID_Hersteller']; ?>"><?= $tabak['Name']; ?></option>
             <?php endforeach ?>
         </select>
         <br/><br/>
 
-        <a href="javascript:void(0)" id="add_input_hersteller">Neuen Hersteller hinzufügen</a>
-        <br/>
-        <br/>
 
-       <div id="producer">
-            <label>Hersteller hinzufügen</label>
-            <input type="text" name="hersteller" />
-       </div>
+
+       <label>Sorte</label>
+        <input type="text" name="sorte" />
+
+        <?php /*
 
        <div id="sort">
             <label>Sorte</label>
             <input type="text" name="sorte" />
        </div>
 
-        <?php /*
-
        
-
         <label>Geschmack</label>
         <input type="text" name="geschmack" />
 
@@ -136,7 +165,7 @@
 
         ?>
 
-        <input type="submit" value="Bewerten" />
+        <input type="submit" name="addSort" value="Bewerten" />
     </form>
 </div>
 
