@@ -7,8 +7,8 @@
 <?php
  
     if(isset($_GET['rating'])) {
-     $error = false;
-     $producer = $_POST['hersteller'];
+    $error = false;
+    $producer = $_POST['hersteller'];
     // $sort = $_POST['sorte'];
     // $taste = $_POST['geschmack'];
     // $rating = $_POST['bewertung'];
@@ -92,24 +92,37 @@
     $tabakproducer = $statement->fetchALL();
 ?>
 
-<div class="wrapper">
+<div class="wrapper" id="form">
      <h1>Neuen Tabak hinzufügen</h1>
 
      <form action="?rating" method="post" enctype="multipart/form-data">
 
         <label>Hersteller</label>
          <select>
+            <option disabled selected value> -- Wähle einen Tabakhersteller aus -- </option>
             <?php foreach ($tabakproducer as $tabak): ?>
                  <option value="<?= $tabak['ID_Hersteller']; ?>"><?= $tabak['Name']; ?></option>
             <?php endforeach ?>
         </select>
+        <br/><br/>
 
-        
+        <a href="javascript:void(0)" id="add_input_hersteller">Neuen Hersteller hinzufügen</a>
+        <br/>
+        <br/>
+
+       <div id="producer">
+            <label>Hersteller hinzufügen</label>
+            <input type="text" name="hersteller" />
+       </div>
+
+       <div id="sort">
+            <label>Sorte</label>
+            <input type="text" name="sorte" />
+       </div>
 
         <?php /*
 
-        <label>Sorte</label>
-        <input type="text" name="sorte" />
+       
 
         <label>Geschmack</label>
         <input type="text" name="geschmack" />
@@ -126,3 +139,8 @@
         <input type="submit" value="Bewerten" />
     </form>
 </div>
+
+<?php 
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/tabak-review/assets/inc/footer.php";
+?>
+
