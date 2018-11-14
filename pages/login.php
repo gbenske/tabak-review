@@ -1,22 +1,22 @@
 <?php
 
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/tabak-review/assets/php/bootstrap.php';
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/tabak-review/assets/inc/head.php";
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/tabak-review/assets/inc/header.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/assets/php/bootstrap.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/assets/inc/head.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/assets/inc/header.php";
 
 if(isset($_GET['login'])) {
-    $loginname = $_POST['loginname'];
+    $loginname = $_POST['name'];
     $passwort = $_POST['passwort'];
 
-    $statement = $pdo->prepare("SELECT * FROM user WHERE loginname = :loginname");
-    $result = $statement->execute(array('loginname' => $loginname));
+    $statement = $pdo->prepare("SELECT * FROM user WHERE name = :name");
+    $result = $statement->execute(array('name' => $loginname));
     $user = $statement->fetch();
 
 
 
     //Überprüfung des Passworts
     if ($user !== false && password_verify($passwort, $user['passwort'])) {
-        $_SESSION['userid'] = $user['ID_User'];
+        $_SESSION['userid'] = $user['id'];
         header("Location: index.php");
     } else {
         $errorMessage = "Benutzername oder Passwort war ungültig";
@@ -31,7 +31,7 @@ if(isset($_GET['login'])) {
         <div>
             <form action="?login" method="post">
                 <label>Benutzername:</label>
-                <input type="text" name="loginname">
+                <input type="text" name="name">
                 
                 <label>Passwort</label>
                 <input type="password" name="passwort"><br>
@@ -48,5 +48,5 @@ if(isset($_GET['login'])) {
 </div>
 
 <?php
-     include_once $_SERVER['DOCUMENT_ROOT'] . "/tabak-review/assets/inc/footer.php";
+     include_once $_SERVER['DOCUMENT_ROOT'] . "/assets/inc/footer.php";
 ?>
