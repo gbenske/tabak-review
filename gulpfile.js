@@ -51,7 +51,7 @@ gulp.task('tinypng', function(){
 // 
 gulp.task('watch', function(){
 	browserSync.init({
-		proxy: 'http://192.168.178.41'
+		proxy: 'localhost:8012/tabak-review/pages'
 	});
 	gulp.watch('assets/js/*.js', ['concat']);
 	gulp.watch('assets/js/all.js', ['scripts']);

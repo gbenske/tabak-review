@@ -1,14 +1,14 @@
 <?php 
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/tabak-review/assets/php/bootstrap.php';
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/tabak-review/assets/inc/head.php";
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/tabak-review/assets/inc/header.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/assets/php/bootstrap.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/assets/inc/head.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/assets/inc/header.php";
 ?>
 
 <?php 
 
-    $statement = $pdo->prepare("SELECT * FROM hersteller");
+    $statement = $pdo->prepare("SELECT * FROM manufacturer");
     $statement->execute();
-    $tabakproducer = $statement->fetchALL();
+    $tabakManufacturer = $statement->fetchALL();
 
 ?>
 
@@ -16,9 +16,9 @@
  
     if(isset($_GET['rating'])) {
     $error = false;
-    $producer = $_POST['hersteller'];
-    $addProducer = $_POST['addHersteller'];
-    $sort = $_POST['sorte'];
+    $manufacturer = $_POST['manufacturer'];
+    $addManufacturer = $_POST['addManufacturer'];
+    $tobacco = $_POST['tobacco'];
     // $taste = $_POST['geschmack'];
     // $rating = $_POST['bewertung'];
 
@@ -32,45 +32,45 @@
 
     //Überprüfe, ob Tabaksorte schon vorhanden ist
     if(!$error) { 
-            $statement = $pdo->prepare("SELECT * FROM sorte WHERE Name = :Name");
-            $result = $statement->execute(array('Name' => $sort));
-            $tabaksort = $statement->fetch();
+            $statement = $pdo->prepare("SELECT * FROM tobacco WHERE name = :name");
+            $result = $statement->execute(array('name' => $tobacco));
+            $tabaktobacco = $statement->fetch();
      
-        if($tabaksort !== false) {
-                echo 'Diese Sorte ist bereits gespeichert!';
+        if($tabaktobacco !== false) {
+                echo 'Diese tobacco ist bereits gespeichert!';
             $error = true;
          } else {
 
-            if(isset($_POST['hersteller'])) {
-                $statement = $pdo->prepare("INSERT INTO sorte (ID_Hersteller, Name) VALUES (:ID_Hersteller, :Name)");
-                $result = $statement->execute(array('ID_Hersteller' => $producer, 'Name' => $sort));
+            if(isset($_POST['manufacturer'])) {
+                $statement = $pdo->prepare("INSERT INTO tobacco (ID_manufacturer, name) VALUES (:ID_manufacturer, :name)");
+                $result = $statement->execute(array('ID_manufacturer' => $manufacturer, 'name' => $tobacco));
 
                 if($result) { 
-                    echo 'Sorte wurde hinzufügt.';
+                    echo 'tobacco wurde hinzufügt.';
                 } else {
                     echo 'Beim Abspeichern ist leider ein Fehler aufgetreten';
                 }
             }
 
-            if($producer == '') {
-                if (!empty($_POST['addHersteller'])) {
+            if($manufacturer == '') {
+                if (!empty($_POST['addManufacturer'])) {
                     
-                    //Überprüfe, ob Tabakhersteller schon vorhanden ist
+                    //Überprüfe, ob Tabaksorte schon vorhanden ist
                       if(!$error) { 
-                            $statement = $pdo->prepare("SELECT * FROM hersteller WHERE Name = :Name");
-                            $result = $statement->execute(array('Name' => $addProducer));
-                            $tabakproducer = $statement->fetch();
+                            $statement = $pdo->prepare("SELECT * FROM manufacturer WHERE name = :name");
+                            $result = $statement->execute(array('name' => $addManufacturer));
+                            $tabakManufacturer = $statement->fetch();
                          
-                            if($tabakproducer !== false) {
-                                    echo 'Dieser Hersteller ist bereits gespeichert!';
+                            if($tabakManufacturer !== false) {
+                                    echo 'Dieser manufacturer ist bereits gespeichert!';
                                 $error = true;
                              }  else {
-                                $statement = $pdo->prepare("INSERT INTO hersteller (Name) VALUES (:Name)");
-                                $result = $statement->execute(array('Name' => $addProducer));
+                                $statement = $pdo->prepare("INSERT INTO manufacturer (name) VALUES (:name)");
+                                $result = $statement->execute(array('name' => $addManufacturer));
 
-                               if (isset($_POST['addProducer'])) {
+                               if (isset($_POST['addManufacturer'])) {
                                     if($result) { 
-                                        echo 'Hersteller wurde hinzufügt.';
+                                        echo 'manufacturer wurde hinzufügt.';
                                     } else {
                                         echo 'Beim Abspeichern ist leider ein Fehler aufgetreten';
                                     }
@@ -78,7 +78,7 @@
                              }
                          }
                     } else {
-                        echo "Bitte Hersteller anlegen.";
+                        echo "Bitte manufacturer anlegen.";
                     }
                 }
             }
@@ -103,8 +103,8 @@
             echo "Bild wurde hochgeladen";
         } 
 
-        $statement = $pdo->prepare("INSERT INTO tabak (hersteller, sorte, geschmack, bewertung) VALUES (:hersteller, :sorte, :geschmack, :bewertung)");
-        $result = $statement->execute(array('hersteller' => $producer, 'sorte' => $sort, 'geschmack' => $taste, 'bewertung' => $rating));
+        $statement = $pdo->prepare("INSERT INTO tabak (manufacturer, tobacco, geschmack, bewertung) VALUES (:manufacturer, :tobacco, :geschmack, :bewertung)");
+        $result = $statement->execute(array('manufacturer' => $manufacturer, 'tobacco' => $tobacco, 'geschmack' => $taste, 'bewertung' => $rating));
  
         if($result) { 
            echo 'Tabak wurde hinzufügt.';
@@ -120,36 +120,36 @@
 
      <form action="?rating" method="post" enctype="multipart/form-data">
 
-        <a href="javascript:void(0)" id="add_input_producer">Neuen Hersteller hinzufügen</a>
+        <a href="javascript:void(0)" id="add_input_manufacturer">Neuen Hersteller hinzufügen</a>
         <br/>
         <br/>
 
-        <div id="producer">
+        <div id="manufacturer">
             <label>Hersteller hinzufügen</label>
-            <input type="text" name="addHersteller" />
-            <input type="submit" name="addProducer" value="Hersteller hinzufügen" />
+            <input type="text" name="addManufacturer" />
+            <input type="submit" name="addManufacturer" value="Hersteller hinzufügen" />
        </div>
 
        
         <label>Hersteller</label>
-         <select name="hersteller">
-            <option disabled selected value=""> -- Wähle einen Tabakhersteller aus -- </option>
-            <?php foreach ($tabakproducer as $tabak): ?>
-                 <option value="<?= $tabak['ID_Hersteller']; ?>"><?= $tabak['Name']; ?></option>
+         <select name="manufacturer">
+            <option disabled selected value=""> -- Wähle einen Hersteller aus -- </option>
+            <?php foreach ($tabakManufacturer as $tabak): ?>
+                 <option value="<?= $tabak['ID_manufacturer']; ?>"><?= $tabak['name']; ?></option>
             <?php endforeach ?>
         </select>
         <br/><br/>
 
 
 
-       <label>Sorte</label>
-        <input type="text" name="sorte" />
+       <label>Tabaknamen</label>
+        <input type="text" name="tobacco" />
 
         <?php /*
 
-       <div id="sort">
-            <label>Sorte</label>
-            <input type="text" name="sorte" />
+       <div id="tobacco">
+            <label>tobacco</label>
+            <input type="text" name="tobacco" />
        </div>
 
        
@@ -165,11 +165,11 @@
 
         ?>
 
-        <input type="submit" name="addSort" value="Bewerten" />
+        <input type="submit" name="addTobacco" value="Bewerten" />
     </form>
 </div>
 
 <?php 
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/tabak-review/assets/inc/footer.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/assets/inc/footer.php";
 ?>
 

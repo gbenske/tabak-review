@@ -1,4 +1,4 @@
 <?php
-	header("Location: assets/pages/index.php");
+	header("Location: pages/index.php");
 	exit;
 ?>

@@ -1,8 +1,8 @@
-$grid-padding: 20px
+.grid-wrapper
+	display: grid
+	grid-template-columns: repeat(3, 1fr)
+	grid-column-gap: 24px
 
-.flex-grid
-	display: flex
-	flex-wrap: wrap
 
 	.col
 		display: flex
@@ -10,6 +10,5 @@ $grid-padding: 20px
 		align-items: center
 		flex-wrap: wrap
 		flex-direction: column
-		flex: 1 1 33.33%
 		background-color: $color-dark-grey
 		padding: 100px 0
