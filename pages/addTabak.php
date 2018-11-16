@@ -19,8 +19,8 @@
     $manufacturer = $_POST['manufacturer'];
     $addManufacturer = $_POST['addManufacturer'];
     $tobacco = $_POST['tobacco'];
-    // $taste = $_POST['geschmack'];
-    // $rating = $_POST['bewertung'];
+    $taste = $_POST['geschmack'];
+    $rating = $_POST['bewertung'];
 
     // $folder = "../img/";
     // $image = $_FILES['image']['name'];
@@ -32,25 +32,25 @@
 
     //Überprüfe, ob Tabaksorte schon vorhanden ist
     if(!$error) { 
-            $statement = $pdo->prepare("SELECT * FROM tobacco WHERE name = :name");
-            $result = $statement->execute(array('name' => $tobacco));
-            $tabaktobacco = $statement->fetch();
-     
-        if($tabaktobacco !== false) {
-                echo 'Diese tobacco ist bereits gespeichert!';
-            $error = true;
-         } else {
+             $statement = $pdo->prepare("SELECT * FROM tobacco WHERE name = :name");
+             $result = $statement->execute(array('name' => $tobacco));
+             $tabaktobacco = $statement->fetch();
+        
+         if($tabaktobacco !== false) {
+                 echo 'Dieser Tabaksorte ist bereits gespeichert!';
+             $error = true;
+          } else {
 
-            if(isset($_POST['manufacturer'])) {
-                $statement = $pdo->prepare("INSERT INTO tobacco (ID_manufacturer, name) VALUES (:ID_manufacturer, :name)");
-                $result = $statement->execute(array('ID_manufacturer' => $manufacturer, 'name' => $tobacco));
+             if(isset($_POST['manufacturer'])) {
+                 $statement = $pdo->prepare("INSERT INTO tobacco (ID_manufacturer, name) VALUES (:ID_manufacturer, :name)");
+                 $result = $statement->execute(array('ID_manufacturer' => $manufacturer, 'name' => $tobacco));
 
-                if($result) { 
-                    echo 'tobacco wurde hinzufügt.';
-                } else {
-                    echo 'Beim Abspeichern ist leider ein Fehler aufgetreten';
-                }
-            }
+                 if($result) { 
+                     echo 'Tabaksorte wurde hinzufügt.';
+                 } else {
+                     echo 'Beim Abspeichern ist leider ein Fehler aufgetreten';
+                 }
+             }
 
             if($manufacturer == '') {
                 if (!empty($_POST['addManufacturer'])) {
@@ -62,7 +62,7 @@
                             $tabakManufacturer = $statement->fetch();
                          
                             if($tabakManufacturer !== false) {
-                                    echo 'Dieser manufacturer ist bereits gespeichert!';
+                                    echo 'Dieser Hersteller ist bereits gespeichert!';
                                 $error = true;
                              }  else {
                                 $statement = $pdo->prepare("INSERT INTO manufacturer (name) VALUES (:name)");
@@ -70,7 +70,7 @@
 
                                if (isset($_POST['addManufacturer'])) {
                                     if($result) { 
-                                        echo 'manufacturer wurde hinzufügt.';
+                                        echo 'Hersteller wurde hinzufügt.';
                                     } else {
                                         echo 'Beim Abspeichern ist leider ein Fehler aufgetreten';
                                     }
@@ -78,7 +78,7 @@
                              }
                          }
                     } else {
-                        echo "Bitte manufacturer anlegen.";
+                        echo "Bitte Hersteller anlegen.";
                     }
                 }
             }
@@ -125,17 +125,17 @@
         <br/>
 
         <div id="manufacturer">
-            <label>Hersteller hinzufügen</label>
+            <h2>Hersteller hinzufügen</h2>
             <input type="text" name="addManufacturer" />
-            <input type="submit" name="addManufacturer" value="Hersteller hinzufügen" />
+            <input type="submit" value="Hersteller hinzufügen" />
        </div>
 
        
         <label>Hersteller</label>
          <select name="manufacturer">
             <option disabled selected value=""> -- Wähle einen Hersteller aus -- </option>
-            <?php foreach ($tabakManufacturer as $tabak): ?>
-                 <option value="<?= $tabak['ID_manufacturer']; ?>"><?= $tabak['name']; ?></option>
+            <?php foreach ($tabakManufacturer as $manufacturer): ?>
+                 <option value="<?= $tabak['id']; ?>"><?= $manufacturer['name']; ?></option>
             <?php endforeach ?>
         </select>
         <br/><br/>
