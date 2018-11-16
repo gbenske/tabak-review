@@ -42,8 +42,8 @@
           } else {
 
              if(isset($_POST['manufacturer'])) {
-                 $statement = $pdo->prepare("INSERT INTO tobacco (ID_manufacturer, name) VALUES (:ID_manufacturer, :name)");
-                 $result = $statement->execute(array('ID_manufacturer' => $manufacturer, 'name' => $tobacco));
+                 $statement = $pdo->prepare("INSERT INTO tobacco (name, id_manufacturer) VALUES (:name, :id_manufacturer)");
+                 $result = $statement->execute(array('name' => $tobacco, 'id_manufacturer' => $manufacturer));
 
                  if($result) { 
                      echo 'Tabaksorte wurde hinzufügt.';
@@ -130,20 +130,24 @@
             <input type="submit" value="Hersteller hinzufügen" />
        </div>
 
+       <hr>
        
-        <label>Hersteller</label>
+        <h2>Hersteller</h2>
          <select name="manufacturer">
             <option disabled selected value=""> -- Wähle einen Hersteller aus -- </option>
             <?php foreach ($tabakManufacturer as $manufacturer): ?>
-                 <option value="<?= $tabak['id']; ?>"><?= $manufacturer['name']; ?></option>
+                 <option value="<?= $manufacturer['id']; ?>"><?= $manufacturer['name']; ?></option>
             <?php endforeach ?>
         </select>
         <br/><br/>
 
+        
 
 
-       <label>Tabaknamen</label>
+
+       <h2>Tabaksorten</h2>
         <input type="text" name="tobacco" />
+        <input type="submit" value="Tabaksorte hinzufügen" />
 
         <?php /*
 
