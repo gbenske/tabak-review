@@ -19,7 +19,7 @@
     $manufacturer = $_POST['manufacturer'];
     $addManufacturer = $_POST['addManufacturer'];
     $tobacco = $_POST['tobacco'];
-    $taste = $_POST['geschmack'];
+    $flavor = $_POST['flavor'];
     $rating = $_POST['bewertung'];
 
     // $folder = "../img/";
@@ -41,6 +41,7 @@
              $error = true;
           } else {
 
+            // Schreibe Tabaksorte zu entsprechenden Hersteller
              if(isset($_POST['manufacturer'])) {
                  $statement = $pdo->prepare("INSERT INTO tobacco (name, id_manufacturer) VALUES (:name, :id_manufacturer)");
                  $result = $statement->execute(array('name' => $tobacco, 'id_manufacturer' => $manufacturer));
@@ -55,7 +56,7 @@
             if($manufacturer == '') {
                 if (!empty($_POST['addManufacturer'])) {
                     
-                    //Überprüfe, ob Tabaksorte schon vorhanden ist
+                    //Überprüfe, ob Hersteller schon vorhanden ist
                       if(!$error) { 
                             $statement = $pdo->prepare("SELECT * FROM manufacturer WHERE name = :name");
                             $result = $statement->execute(array('name' => $addManufacturer));
@@ -77,11 +78,33 @@
                                }
                              }
                          }
-                    } else {
-                        echo "Bitte Hersteller anlegen.";
                     }
                 }
             }
+        }
+
+        if (!$error) {
+            $statement = $pdo->prepare("SELECT * FROM flavor WHERE name = :name");
+            $result = $statement->execute(array('name' => $flavor));
+            $flavortobacco = $statement->fetch();
+        
+         if($flavortobacco !== false) {
+                 echo 'Dieser Geschmack ist bereits gespeichert!';
+             $error = true;
+          } else {
+
+            // Schreibe Tabaksorte zu entsprechenden Hersteller
+             if(isset($_POST['flavor'])) {
+                 $statement = $pdo->prepare("INSERT INTO flavor (name) VALUES (:name)");
+                 $result = $statement->execute(array('name' => $flavor));
+
+                 if($result) { 
+                     echo 'Geschmack wurde hinzufügt.';
+                 } else {
+                     echo 'Beim Abspeichern ist leider ein Fehler aufgetreten';
+                 }
+             }
+         }
         }
 
     /*
@@ -145,20 +168,17 @@
 
 
 
-       <h2>Tabaksorten</h2>
+        <h2>Tabaksorten</h2>
         <input type="text" name="tobacco" />
         <input type="submit" value="Tabaksorte hinzufügen" />
 
+        <hr>
+
+        <h2>Geschmack hinzufügen</h2>
+        <input type="text" name="flavor" />
+        <input type="submit" value="Geschmack hinzufügen" />
+
         <?php /*
-
-       <div id="tobacco">
-            <label>tobacco</label>
-            <input type="text" name="tobacco" />
-       </div>
-
-       
-        <label>Geschmack</label>
-        <input type="text" name="geschmack" />
 
         <label>Bewertung</label>
         <input type="text" name="bewertung" />
