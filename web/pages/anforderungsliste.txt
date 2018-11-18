@@ -1,0 +1,16 @@
+Anforderungsliste Tabakseite:
+
+Erledigt:
+Hersteller hinzufügen können
+Hersteller anzeigen können in der Pflegemaske
+Tabaksorten dem Hersteller hinzufügen
+Geschmack hinzufügen
+Geschmack der Tabaksorte hinzufügen
+Bewerung der Tabaksorte hinzufügen
+Notiz der Tabaksorte hinzufügen
+
+
+Zu erledigen:
+Bilder der Tabaksorte hinzufügen
+Hersteller, Sorte oder Geschmack löschen können
+Via ajax den Content laden

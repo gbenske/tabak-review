@@ -1,0 +1,174 @@
+* 
+	margin: 0
+	padding: 0
+	box-sizing: border-box
+
+body
+
+	font-family: 'Raleway', sans-serif
+	font-size: 19px
+
+	h1 
+		text-align: center
+		padding-bottom: 48px
+
+	h2 
+		padding-bottom: 48px
+
+	ul
+		list-style: none
+
+	a 
+		text-decoration: none
+		color: $color-black
+
+	.wrapper
+		position: relative
+		width: 100%
+		max-width: 1200px
+		margin: 0 auto
+
+	header
+		background-color: $color-white
+		padding: 12px 24px
+		box-shadow: 0 0 7px rgba(0,0,0,0.33)
+		position: fixed
+		width: 100%
+		margin: 0 auto
+		z-index: 10
+		.wrapper
+			display: flex
+			flex-wrap: wrap
+			justify-content: flex-end
+
+			.hamburger 
+				width: 28px
+				height: 28px
+				cursor: pointer
+				align-self: center
+				z-index: 999
+				text-transform: none
+
+				@media only screen and (min-width: $tablet) 
+					display: none
+
+				.icon 
+					position: absolute
+					margin-left: 2px
+					margin-top: 10px
+					width: 28px
+					height: 3px
+					background-color: $color-primary
+					transition: all ease-in-out 0.2s
+
+					&:before 
+						content: ''
+						position: absolute
+						top: -8px
+						left: 0
+						width: 28px
+						height: 3px
+						background-color: $color-primary
+						transition: all ease-in-out 0.2s
+
+					&:after
+						content: ''
+						position: absolute
+						top: 8px
+						left: 0
+						width: 28px
+						height: 3px
+						background-color: $color-primary
+						transition: all ease-in-out 0.2s
+
+					&.cross
+						background-color: #fff
+						height: 0
+
+						&:before
+							top: 0
+							-webkit-transform: rotate(-45deg)
+							transform: rotate(-45deg)
+						
+						&:after
+							top: 0
+							-webkit-transform: rotate(45deg)
+							transform: rotate(45deg)
+
+			nav 
+				display: flex
+				transform: translateX(100%)
+				position: fixed
+				top: 0
+				right: 0
+				height: 100vh
+				z-index: -1
+				background: $color-white
+				padding: 80px 0
+				box-shadow: 0 0 7px rgba(0,0,0,0.33)
+				transition: all ease-in-out 0.2s
+
+				@media only screen and (min-width: $tablet) 
+					transform: translateX(0%)
+					box-shadow: none
+					height: auto
+					background: transparent
+					padding: 0
+					position: relative
+					z-index: 1
+
+				&.open 
+					transform: translateX(0%)
+					-moz-transform: translateX(0%)
+					-webkit-transform: translateX(0%)
+					-ms-transform: translateX(0%)
+
+				ul
+					display: flex
+					flex-wrap: wrap
+					flex-direction: column
+
+					@media only screen and (min-width: $tablet)
+						flex-direction: row
+
+					li 
+						border-bottom: 1px solid $color-border
+
+						@media only screen and (min-width: $tablet)
+							border: none
+						a 
+							color: $color-secondary
+							padding: 21px 24px
+							font-size: 16px
+							font-weight: 300
+							display: block
+							transition: all ease-in-out 0.2s
+
+							&:hover
+								color: $color-primary
+
+
+						&:last-child
+							padding-right: 0
+
+	main
+		padding-top: 85px
+
+	form
+
+		input
+			display: block
+			margin-bottom: 15px
+
+		#producer, #sort
+			display: none
+
+			&.show
+				display: block
+
+	footer
+		background-color: $color-light-grey
+		padding: 48px 0
+		display: flex
+		flex-wrap: wrap
+		justify-content: flex-end
