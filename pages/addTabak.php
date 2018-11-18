@@ -8,7 +8,7 @@
 <?php 
 
     // Hole mir alle Hersteller
-    $statement = $pdo->prepare("SELECT * FROM manufacturer");
+    $statement = $pdo->prepare("SELECT * FROM manufacturer ORDER BY name ASC");
     $statement->execute();
     $tobaccoManufacturer = $statement->fetchALL();
 
@@ -17,7 +17,7 @@
 <?php 
 
     // Hole mir alle Tabaksorten
-    $statement = $pdo->prepare("SELECT * FROM tobacco");
+    $statement = $pdo->prepare("SELECT * FROM tobacco ORDER BY name ASC");
     $statement->execute();
     $tobaccoSort = $statement->fetchALL();
 
@@ -26,14 +26,16 @@
 <?php 
 
     // Hole mir alle Tabaksorten
-    $statement = $pdo->prepare("SELECT * FROM flavor");
+    $statement = $pdo->prepare("SELECT * FROM flavor ORDER BY name ASC");
     $statement->execute();
     $tobaccoFlavor = $statement->fetchALL();
 
 ?>
 
 <?php
- 
+
+    error_reporting(0);
+
     if(isset($_GET['rating'])) {
     $error = false;
 
@@ -46,6 +48,7 @@
     $chooseManufacturer = $_POST['chooseManufacturer'];
     $chooseFlavor = $_POST['chooseFlavor'];
     $chooseTobacco = $_POST['chooseTobacco'];
+    $chooseTobaccoRating = $_POST['chooseTobaccoRating'];
     
     //$flavor = $_POST['flavor'];
     //$rating = $_POST['bewertung'];
@@ -125,7 +128,7 @@
         <hr>
 
         <h2>Tabaksorte auswählen</h2>
-         <select name="chooseTobacco"> 
+         <select name="chooseTobaccoRating"> 
             <option disabled selected value=""> -- Wähle eine Tabaksorte aus -- </option>
             <?php foreach ($tobaccoSort as $sort): ?>
                  <option value="<?= $sort['id']; ?>"><?= $sort['name']; ?></option>
