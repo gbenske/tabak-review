@@ -41,7 +41,7 @@
     $addTobacco = $_POST['addTobacco'];
     $addFlavor = $_POST['addFlavor'];
     $addRating = $_POST['addRating'];
-    $addNotice = $_POST['addNotice'];
+    $addNote= $_POST['addNote'];
     
     $chooseManufacturer = $_POST['chooseManufacturer'];
     $chooseFlavor = $_POST['chooseFlavor'];
@@ -137,7 +137,7 @@
         <input type="text" name="addRating" />
 
         <h2>Notiz hinzufügen</h2>
-        <textarea name="addNotice" cols="30" rows="10"></textarea>
+        <textarea name="addNote" cols="30" rows="10"></textarea>
         <input type="submit" value="Bewertung abgeben" />
 
         <?php /*
