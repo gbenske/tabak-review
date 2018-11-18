@@ -1,8 +1,8 @@
 <?php 
-    if(!$error) { 
-        $statement = $pdo->prepare("SELECT * FROM tobacco WHERE id_tobacco, id_flavor = :id_tobacco, :id_flavor");
-        $result = $statement->execute(array('id_tobacco' => $chooseTobacco, 'id_flavor' => $chooseFlavor));
-        $tobacco_to_flavor = $statement->fetch();
+if(!$error) { 
+    $statement = $pdo->prepare("SELECT * FROM tobacco WHERE id_tobacco, id_flavor = :id_tobacco, :id_flavor");
+    $result = $statement->execute(array('id_tobacco' => $chooseTobacco, 'id_flavor' => $chooseFlavor));
+    $tobacco_to_flavor = $statement->fetch();
    
     if($tobacco_to_flavor !== false) {
             echo 'Dieser Geschmack wurde bereits der Tabaksorte hinzugefügt!';
