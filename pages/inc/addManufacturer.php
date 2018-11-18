@@ -1,7 +1,7 @@
 <?php
-
     if($chooseManufacturer == '') {
         if (!empty($_POST['addManufacturer'])) {
+            
             //Überprüfe, ob Hersteller schon vorhanden ist
             if(!$error) { 
                 $statement = $pdo->prepare("SELECT * FROM manufacturer WHERE name = :name");
