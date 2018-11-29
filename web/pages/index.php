@@ -29,44 +29,56 @@
 
 ?>
 
+	<div class="parallax-hero" id="parallax-hero"></div>
+
 	<main> 
 		<div class="wrapper">
-			<h1>Tabak Review GB</h1>
+			<h1>Smokerslounge</h1>
+			<span class="caption">present by GB</span>
 
-			<div class="grid-wrapper">
+			<p class="entrance">
+				Herzlich Wilkommen auf meiner Webseite. Hier findest du alle Tabaksorten die ich schon geraucht habe. Ich betone hier das es sich hierbei um <span class="important">meine</span> Meinung handelt. Deswegen kann ich nicht garantieren das meine Meinung auch deiner Meinung wiederspiegelt, aber so hast du einen Überlick welche Tabaksorten dir vielleicht zu sprechen und die du vielleicht kaufen willst.
+			</p>
 
-			<?php /* foreach ($selectImage as $image) { ?>
-				<div class="col">
-					<img src="../img/<?php echo $image['images']; ?>">
+			<section>
+				<div class="grid-wrapper">
+					<?php /* foreach ($selectImage as $image) { ?>
+						<div class="col">
+							<img src="../img/<?php echo $image['images']; ?>">
+						</div>
+					<?php } */?>
+
+
+					<?php foreach ($tobaccos as $tobacco) { 
+
+						$sql = "SELECT f.name AS flavor
+								FROM tobacco_to_flavor tf
+								INNER JOIN flavor f ON f.id = tf.id_flavor
+								WHERE tf.id_tobacco = ".$tobacco['tobaccoId'];
+
+						$statement = $pdo->query($sql);
+						$flavors = $statement->fetchALL(PDO::FETCH_ASSOC);
+
+						$result = array_map(function($value) {
+							return $value['flavor'];
+						}, $flavors);
+
+						?>
+						<div class="col">
+							<img src="../assets/img/comming-soon.png" alt="">
+							<div class="listEntry">
+								<h2><?php echo $tobacco['manufacturer'] ?></h2>
+								<div class="tobacco"><?php echo $tobacco['tobacco'] ?></div>
+								<div class="flavor"><?php echo implode(', ', $result) ?></div>
+							</div>
+							<div class="circle">
+								<h2>Bewertung</h2>
+								<div class="rating"><?php echo $tobacco['count'] ?></div>
+							</div>
+						</div>
+					<?php } ?>
 				</div>
-			<?php } */?>
-
-
-			<?php foreach ($tobaccos as $tobacco) { 
-
-				$sql = "SELECT f.name AS flavor
-						FROM tobacco_to_flavor tf
-						INNER JOIN flavor f ON f.id = tf.id_flavor
-						WHERE tf.id_tobacco = ".$tobacco['tobaccoId'];
-
-				$statement = $pdo->query($sql);
-				$flavors = $statement->fetchALL(PDO::FETCH_ASSOC);
-
-				$result = array_map(function($value) {
-					return $value['flavor'];
-				}, $flavors);
-
-				?>
-				<div class="col">
-					<img src="../assets/img/comming-soon.png" alt="">
-					<h2><?php echo $tobacco['manufacturer'] ?></h2>
-					<div class="tobacco"><?php echo $tobacco['tobacco'] ?></div>
-					<div class="flavor"><?php echo implode(', ', $result) ?></div>
-					<div class="rating"><?php echo $tobacco['count'] ?></div>
-				</div>
-			<?php } ?>
-
-			</div>
+			</section>
 		</div>
 	</main>
 

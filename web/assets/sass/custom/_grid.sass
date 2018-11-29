@@ -1,7 +1,10 @@
 .grid-wrapper
 	display: grid
-	grid-template-columns: repeat(3, 1fr)
-	grid-column-gap: 24px
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+	grid-gap: 48px
+
+	@media only screen and (min-width: $tablet)
+		grid-template-columns: repeat(3, 1fr)
 
 
 	.col
@@ -10,5 +13,4 @@
 		align-items: center
 		flex-wrap: wrap
 		flex-direction: column
-		background-color: $color-dark-grey
-		padding: 100px 0
+		position: relative

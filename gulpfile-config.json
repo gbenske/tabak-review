@@ -1,0 +1,26 @@
+{
+  "publicPath": "./web",
+  "assetsPath": "./web/assets",
+  "bsProxy": "192.168.56.128",
+  "watchHtml": "./web/*.php",
+
+  "styles": {
+    "frontend": {
+      "src": [
+        "./node_modules/font-awesome/css/font-awesome.min.css",
+        "./web/assets/sass/default.sass"
+      ],
+      "dest": "assets/dist/css/main.css"
+    }
+  },
+
+  "scripts": {
+    "frontend": {
+      "src": [
+        "./node_modules/jquery/dist/jquery.min.js",
+        "./web/assets/js/default.js"
+      ],
+      "dest": "assets/dist/js/main.js"
+    }
+  }
+}

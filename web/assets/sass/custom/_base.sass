@@ -3,17 +3,29 @@
 	padding: 0
 	box-sizing: border-box
 
+html,
+body
+	height: 100%
+
 body
 
 	font-family: 'Raleway', sans-serif
 	font-size: 19px
 
+	h1, h2, h3 
+		font-weight: 200
+
 	h1 
 		text-align: center
-		padding-bottom: 48px
+		padding: 24px 0 0
+		background: $gradient
+		-webkit-background-clip: text
+		-webkit-text-fill-color: transparent
+		font-size: 28px
 
-	h2 
-		padding-bottom: 48px
+		@media only screen and (min-width: $desktop)
+			font-size: 72px
+			padding: 72px 0 0
 
 	ul
 		list-style: none
@@ -22,20 +34,31 @@ body
 		text-decoration: none
 		color: $color-black
 
+	p
+		line-height: 28px
+
+	img
+		width: 100%
+
 	.wrapper
 		position: relative
 		width: 100%
 		max-width: 1200px
 		margin: 0 auto
+		padding: 0 24px
+
+		@media only screen and (min-width: $desktop)
+			padding: 0
 
 	header
 		background-color: $color-white
-		padding: 12px 24px
+		padding: 12px 0
 		box-shadow: 0 0 7px rgba(0,0,0,0.33)
 		position: fixed
 		width: 100%
 		margin: 0 auto
 		z-index: 10
+
 		.wrapper
 			display: flex
 			flex-wrap: wrap
@@ -101,6 +124,8 @@ body
 				position: fixed
 				top: 0
 				right: 0
+				width: 100%
+				max-width: 200px
 				height: 100vh
 				z-index: -1
 				background: $color-white
@@ -111,6 +136,7 @@ body
 				@media only screen and (min-width: $tablet) 
 					transform: translateX(0%)
 					box-shadow: none
+					max-width: unset
 					height: auto
 					background: transparent
 					padding: 0
@@ -127,9 +153,11 @@ body
 					display: flex
 					flex-wrap: wrap
 					flex-direction: column
+					width: 100%
 
 					@media only screen and (min-width: $tablet)
 						flex-direction: row
+						justify-content: flex-end
 
 					li 
 						border-bottom: 1px solid $color-border
@@ -149,16 +177,224 @@ body
 
 
 						&:last-child
-							padding-right: 0
+							a
+								padding-right: 0
+
+	.progress-container 
+		width: 100%
+		height: 4px
+		position: absolute
+		bottom: 0
+
+
+	.progress-bar 
+		height: 4px
+		background: $gradient
+		width: 0%
+
+	.parallax-hero
+		background: url('../../img/hero/hero-01.jpg')
+		background-repeat: no-repeat
+		background-size: cover
+		width: 100%
+		height: 100%
+		max-height: 300px
+		background-position: center
+
+		&.addTabak
+			background: url('../../img/hero/hero-03.jpg')
+
+		@media only screen and (min-width: $desktop)
+			max-height: 600px
+			background-position: 0% 0%
 
 	main
-		padding-top: 85px
+		padding-top: 40px
+
+		@media only screen and (min-width: $desktop)
+			padding-top: 85px
+
+		.caption
+			display: block
+			text-align: center
+			padding: 12px 0 48px
+			font-size: 16px
+			font-weight: 100
+			font-style: italic
+
+		.important
+			text-transform: uppercase
+			font-weight: 900
+			text-decoration: underline
+
+		section
+			padding: 72px 0
+
+		.col
+			box-shadow: 0 0 4px rgba(0,0,0,0.15)
+			&:after
+				content: ''
+				position: absolute
+				top: 0
+				left: 0
+				width: 100%
+				height: 100%
+				background: $gradient
+				opacity: 0 
+				transition: $transition
+
+			.circle
+				position: absolute
+				border-radius: 50%
+				width: 200px
+				height: 200px
+				background: $color-white
+				top: 50%
+				left: 50%
+				transform: translate(-50%, -50%)
+				display: flex
+				flex-wrap: wrap
+				flex-direction: column
+				justify-content: center
+				align-items: center
+				opacity: 0
+				visibility: hidden
+				z-index: 5
+				transition: $transition
+
+				@media only screen and (min-width: $desktop)
+					width: 250px
+					height: 250px
+
+				h2 
+					font-size: 30px
+					font-weight: 300
+					background: $gradient
+					-webkit-background-clip: text
+					-webkit-text-fill-color: transparent
+					padding-bottom: 18px
+
+					@media only screen and (min-width: $desktop)
+						font-size: 36px
+
+				.rating
+					font-size: 38px
+					font-weight: 300
+					background: $gradient
+					-webkit-background-clip: text
+					-webkit-text-fill-color: transparent
+					line-height: normal
+
+					@media only screen and (min-width: $desktop)
+						font-size: 36px
+				
+			@media only screen and (min-width: $desktop)
+				&:hover
+					&:after
+						opacity: 0.85
+
+					.circle
+						opacity: 1
+						visibility: visible
+
+		.listEntry
+			width: 100%
+			background-color: #fafafa
+			padding: 48px 24px			
+			position: relative
+			font-weight: 200
+
+			@media only screen and (min-width: $desktop)
+				height: calc(100% - 368px)
+
+			h2
+				font-size: 32px
+				padding-bottom: 16px
+
+			.tobacco
+				font-size: 19px
+				padding-bottom: 32px
+
+			.flavor
+				font-size: 15px
+				font-style: italic
+
+		&#login
+			background: url('../../img/hero/hero-02.jpg')
+			background-repeat: no-repeat
+			background-size: cover
+			width: 100%
+			height: 100%
+			position: relative
+			background-position: center center
+
+			&:before
+				content: ''
+				position: absolute
+				top: 0
+				left: 0
+				width: 100%
+				height: 100%
+				background: rgba(0,0,0,0.6)
+				z-index: 5
+
+			.wrapper
+				position: absolute
+				left: 50%
+				top: 50%
+				transform: translate(-50%, -50%)
+				z-index: 10
+
+			h1
+				background: transparent
+				-webkit-text-fill-color: $color-white
+
+			.login-mask
+				padding-top: 48px
+				width: 100%
+				max-width: 400px
+				margin: 0 auto
 
 	form
-
 		input
 			display: block
-			margin-bottom: 15px
+			margin-bottom: 36px
+			width: 100%
+			padding: 12px 0
+			font-size: 19px
+			font-weight: 200
+			background: transparent
+			color: $color-white
+			border: none
+			position: relative
+			border-bottom: 2px solid $color-white
+
+		.submit-container
+			width: 100%
+			position: relative
+			border: 2px solid $color-white
+
+			&:before
+				content: ''
+				position: absolute
+				left: 0
+				top: 0
+				width: 100%
+				height: 100%
+				background: $gradient
+				opacity: 0
+				transition: $transition
+
+			&:hover
+				&:before
+					opacity: 1
+
+			input[type="submit"]
+				cursor: pointer
+				transition: $transition
+				background: transparent
+				margin-bottom: 0
+				border: none
 
 		#producer, #sort
 			display: none
@@ -166,9 +402,22 @@ body
 			&.show
 				display: block
 
-	footer
-		background-color: $color-light-grey
-		padding: 48px 0
-		display: flex
-		flex-wrap: wrap
-		justify-content: flex-end
+	#addTabak
+
+		h2
+			padding-bottom: 48px
+
+		form
+			padding-top: 84px
+
+			input
+				border: 2px solid $color-border
+				color: $color-dark-grey
+				padding: 12px
+
+			.submit-container
+				width: 100%
+				max-width: 300px
+				margin-bottom: 48px
+
+

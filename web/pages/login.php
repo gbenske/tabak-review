@@ -1,8 +1,13 @@
+<?php 
+	$json = file_get_contents(__DIR__ . "/../../rev-manifest.json");
+    $assets = json_decode($json, true);
+?>
+
 <?php
 
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/assets/php/bootstrap.php';
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/assets/inc/head.php";
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/assets/inc/header.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/web/assets/php/bootstrap.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/web/assets/inc/head.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/web/assets/inc/header.php";
 
 if(isset($_GET['login'])) {
     $loginname = $_POST['name'];
@@ -25,18 +30,19 @@ if(isset($_GET['login'])) {
 }
 ?>
 
-<div class="wrapper">
-    <h1>Anmelden</h1>
-
-        <div>
+<main id="login"> 
+    <div class="wrapper">
+        <h1>Anmelden</h1>
+        <div class="login-mask">
             <form action="?login" method="post">
-                <label>Benutzername:</label>
-                <input type="text" name="name">
-                
-                <label>Passwort</label>
-                <input type="password" name="passwort"><br>
+                <input type="text" name="name" placeholder="Benutzername">
+                <input type="password" name="passwort" placeholder="Passwort">
                 <br>
-                <input type="submit" value="Anmelden">
+
+                <div class="submit-container">
+                    <input type="submit" value="Anmelden">
+                </div>
+                
             </form>
 
             <?php
@@ -45,8 +51,9 @@ if(isset($_GET['login'])) {
                 }
             ?>
         </div>
-</div>
+    </div>
+</main>
 
 <?php
-     include_once $_SERVER['DOCUMENT_ROOT'] . "/assets/inc/footer.php";
+     include_once $_SERVER['DOCUMENT_ROOT'] . "/web/assets/inc/footer.php";
 ?>
