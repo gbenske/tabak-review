@@ -1,16 +1,25 @@
-.grid-wrapper
-	display: grid
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
-	grid-gap: 48px
+.col-60
+	width: 100%
 
-	@media only screen and (min-width: $tablet)
-		grid-template-columns: repeat(3, 1fr)
+	.row
+		margin: 0 -24px
+		overflow: visible !important
+		
+		&.flex
+			display: flex
+			flex-wrap: wrap
 
+		.col
+			margin: 0 0 60px 0
+			padding: 0 24px
+			width: 100%
 
-	.col
-		display: flex
-		justify-content: center
-		align-items: center
-		flex-wrap: wrap
-		flex-direction: column
-		position: relative
+			@media only screen and (min-width: $desktop)
+				&.col-30
+					width: 50%
+
+				&.col-20
+					width: 33.33333%
+
+				&.col-15
+					width: 25%

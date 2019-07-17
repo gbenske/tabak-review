@@ -5,27 +5,52 @@
 
 html,
 body
-	height: 100%
+	min-height: 100%
 
 body
 
 	font-family: 'Raleway', sans-serif
 	font-size: 19px
+	position: relative
+
+	&:before 
+		content: ""
+		opacity: 0
+		transition: $transition
+
+	&.overlay
+		&:before
+			content: ""
+			display: block
+			position: fixed
+			top: 0
+			left: 0
+			height: 100%
+			width: 100%
+			z-index: 10
+			background-color: rgba(0,0,0,0.8)
+			opacity: 1
 
 	h1, h2, h3 
 		font-weight: 200
 
 	h1 
 		text-align: center
-		padding: 24px 0 0
+		padding: $padding-m 0 0
 		background: $gradient
 		-webkit-background-clip: text
 		-webkit-text-fill-color: transparent
 		font-size: 28px
 
-		@media only screen and (min-width: $desktop)
+		@media only screen and (min-width: $tablet)
 			font-size: 72px
-			padding: 72px 0 0
+			padding: $padding-xl 0 0
+
+	h2 
+		font-size: 23px
+
+		@media only screen and (min-width: $tablet)
+			font-size: 32px
 
 	ul
 		list-style: none
@@ -36,16 +61,117 @@ body
 
 	p
 		line-height: 28px
+		padding-bottom: $padding-l
 
 	img
 		width: 100%
+
+	hr
+		border-top: 2px solid $color-border
+		border-bottom: none
+		margin: $padding-l 0
+
+		@media only screen and (min-width: $desktop)
+			margin: 0
+
+	.btn
+		display: block
+		color: $color-white
+		padding: 12px
+		width: 100%
+		text-align: center
+		background: $gradient
+		background-size: 200% auto
+		margin-bottom: $padding-m
+		cursor: pointer
+		transition: $transition
+
+		&:hover
+			background-position: right center
+
+	
+	.searchBox
+		position: relative
+
+		form
+			height: 100%
+			display: flex
+			flex-wrap: wrap
+			justify-content: flex-end
+
+			.seachBoxLabel
+				background: $color-primary
+				cursor: pointer
+				z-index: 8
+				width: 60px
+				height: 60px
+				position: relative
+				border-radius: 50%
+				order: 2
+
+				label
+					font-size: 16px
+					display: block
+					color: #FFFFFF
+					position: absolute
+					left: 1px
+					top: 25px
+					pointer-events: none
+
+				&:before
+					content: ''
+					pointer-events: none
+					position: absolute
+					bottom: 21px
+					left: 50%
+					transform: translateX(-50%)
+					width: 18px
+					height: 18px
+					border: solid 3px #FFFFFF
+					border-radius: 50%
+					z-index: 11
+				
+				&:after
+					content: ''
+					pointer-events: none
+					position: absolute
+					bottom: 18px
+					right: 18px
+					width: 9px
+					height: 3px
+					background-color: #FFFFFF
+					transform: rotate(54deg)
+					margin-top: 14px
+					margin-left: 9px
+					z-index: 11
+
+			.searchBoxInput
+				.searchTerm
+					order: 1
+					z-index: 5
+					line-height: 26px
+					margin: 0 -60px 0 0
+					font-size: 20px
+					border: none
+					background-color: #FFFFFF
+					color: #444444
+					width: 0
+					height: 60px
+					border-radius: 40px
+					transition: all ease-in-out 0.15s 0s
+					box-shadow: inset 0 0 3px rgba(0,0,0,0.33)
+
+					&.active
+						padding: 0 30px
+						width: 450px
+						transition: all ease-in-out 0.15s 0s
 
 	.wrapper
 		position: relative
 		width: 100%
 		max-width: 1200px
 		margin: 0 auto
-		padding: 0 24px
+		padding: 0 $padding-m
 
 		@media only screen and (min-width: $desktop)
 			padding: 0
@@ -166,7 +292,7 @@ body
 							border: none
 						a 
 							color: $color-secondary
-							padding: 21px 24px
+							padding: 21px $padding-m
 							font-size: 16px
 							font-weight: 300
 							display: block
@@ -198,14 +324,14 @@ body
 		background-size: cover
 		width: 100%
 		height: 100%
-		max-height: 300px
+		min-height: 300px
 		background-position: center
 
 		&.addTabak
 			background: url('../../img/hero/hero-03.jpg')
 
 		@media only screen and (min-width: $desktop)
-			max-height: 600px
+			min-height: 600px
 			background-position: 0% 0%
 
 	main
@@ -217,7 +343,7 @@ body
 		.caption
 			display: block
 			text-align: center
-			padding: 12px 0 48px
+			padding: 12px 0 $padding-l
 			font-size: 16px
 			font-weight: 100
 			font-style: italic
@@ -228,10 +354,17 @@ body
 			text-decoration: underline
 
 		section
-			padding: 72px 0
+			padding: $padding-xl 0
+
+			&#all-products
+				&.search
+					display: none
+
+		.search-form
+			.results
+				padding: $padding-xl 0
 
 		.col
-			box-shadow: 0 0 4px rgba(0,0,0,0.15)
 			&:after
 				content: ''
 				position: absolute
@@ -240,8 +373,9 @@ body
 				width: 100%
 				height: 100%
 				background: $gradient
-				opacity: 0 
 				transition: $transition
+				z-index: 0
+				visibility: hidden
 
 			.circle
 				position: absolute
@@ -257,9 +391,7 @@ body
 				flex-direction: column
 				justify-content: center
 				align-items: center
-				opacity: 0
-				visibility: hidden
-				z-index: 5
+				z-index: 6
 				transition: $transition
 
 				@media only screen and (min-width: $desktop)
@@ -287,25 +419,75 @@ body
 
 					@media only screen and (min-width: $desktop)
 						font-size: 36px
-				
-			@media only screen and (min-width: $desktop)
-				&:hover
-					&:after
-						opacity: 0.85
 
-					.circle
-						opacity: 1
-						visibility: visible
+		.products
+			width: 100%
+			height: 100%
+			perspective: 1000px
+			box-shadow: 0 0 4px rgba(0,0,0,0.15)
+
+			&.showRating
+				.products-flipper
+					transform: translateX(-100%) rotateY(-180deg)
+					transform-origin: center right
+
+				.back-note
+					display: none
+					
+			&.showNote
+				.products-flipper
+					transform: translateX(100%) rotateY(180deg)
+					transform-origin: center left
+
+				.back-rating
+					display: none
+
+		.products-flipper
+			position: relative
+			width: 100%
+			height: 100%
+			cursor: pointer
+			transform-style: preserve-3d
+			transition: all 0.5s
+
+
+		.side 
+			width: 100%
+			height: 100%
+			backface-visibility: hidden
+
+			&.front
+
+			&.back-rating
+				position: absolute
+				top: 0
+				left: 0
+				background: $gradient
+				z-index: 5
+				transform: rotateY(180deg)
+
+			&.back-note
+				position: absolute
+				top: 0
+				left: 0
+				background: $gradient
+				z-index: 5
+				transform: rotateY(-180deg)
+
+				.content
+					color: $color-white
+					padding: $padding-l
 
 		.listEntry
 			width: 100%
 			background-color: #fafafa
-			padding: 48px 24px			
+			padding: $padding-l $padding-m			
 			position: relative
 			font-weight: 200
+			z-index: 5
 
 			@media only screen and (min-width: $desktop)
-				height: calc(100% - 368px)
+				height: calc(100% - 352px)
 
 			h2
 				font-size: 32px
@@ -318,13 +500,14 @@ body
 			.flavor
 				font-size: 15px
 				font-style: italic
+				padding-bottom: $padding-m
 
 		&#login
 			background: url('../../img/hero/hero-02.jpg')
 			background-repeat: no-repeat
 			background-size: cover
 			width: 100%
-			height: 100%
+			height: 100vh
 			position: relative
 			background-position: center center
 
@@ -350,7 +533,7 @@ body
 				-webkit-text-fill-color: $color-white
 
 			.login-mask
-				padding-top: 48px
+				padding-top: $padding-l
 				width: 100%
 				max-width: 400px
 				margin: 0 auto
@@ -396,28 +579,144 @@ body
 				margin-bottom: 0
 				border: none
 
+		textarea
+			font-family: 'Raleway', sans-serif
+			font-size: 19px
+			color: $color-dark-grey
+			border: 2px solid $color-border
+			resize: none
+			padding: 12px
+			margin-bottom: $padding-l
+
 		#producer, #sort
 			display: none
 
 			&.show
 				display: block
 
-	#addTabak
+		&.addTabak
+			padding-top: $padding-l
 
-		h2
-			padding-bottom: 48px
+			@media only screen and (min-width: $tablet)
+				padding-top: $padding-xl
 
-		form
-			padding-top: 84px
+			section
+				display: flex
+				flex-wrap: wrap
+				flex-direction: column
+				background: transparent
+				transition: $transition
+				padding: $padding-s 0
+
+				@media only screen and (min-width: $tablet)
+					padding: $padding-xl 0
+
+				&.active
+					padding: $padding-m $padding-s
+					background: $color-white
+					z-index: 10
+
+					@media only screen and (min-width: $tablet)
+						padding: $padding-xl $padding-l
+
+			.submit-container
+				width: 100%
+				margin-top: auto
+
+				@media only screen and (min-width: $tablet)
+					max-width: 370px
+
+				input
+					border: 2px solid $color-border
+
+					&:hover
+						color: $color-white
+						border: 2px solid transparent
 
 			input
 				border: 2px solid $color-border
 				color: $color-dark-grey
+
+				@media only screen and (min-width: $mobile)
+					padding: $padding-s
+
+			select
+				border: 3px solid $color-border
 				padding: 12px
-
-			.submit-container
+				text-align-last: center
+				cursor: pointer
 				width: 100%
-				max-width: 300px
-				margin-bottom: 48px
+				font-size: 19px
+				color: $color-dark-grey
+				margin-bottom: $padding-xl
 
 
+	#addTabak
+		h2
+			padding-bottom: $padding-l
+
+	.search-form
+		position: fixed
+		left: 0
+		right: 42px
+		bottom: 50px
+		display: flex
+		justify-content: flex-end
+		z-index: 99999
+
+		input
+			position: absolute
+			width: 0
+			height: 100%
+			right: 0
+			border: none
+			border-top-right-radius: 30px
+			border-bottom-right-radius: 30px
+			transition: $transition
+			z-index: -1
+
+			&.active
+				width: 375px
+				padding: 12px
+				border: 2px solid #ccc
+
+		figure
+			border-radius: 50%
+			background: #ccc
+			padding: 12px
+			cursor: pointer
+			svg
+				width: 20px
+				height: 20px
+
+	fieldset
+		border: none
+
+		legend
+			font-size: 24px
+			margin-bottom: 24px
+
+		.sort-options
+			margin: 0 -12px
+
+		label
+			cursor: pointer
+			padding: 12px
+			transition: $transition
+
+			&:hover
+				background: $gradient
+				color: $color-white
+
+			&.active
+				background: $gradient
+				color: $color-white
+
+		input[type=radio]
+			position: absolute
+			clip: rect(0, 0, 0, 0)
+			pointer-events: none
+
+
+.svg-container
+	display: none
