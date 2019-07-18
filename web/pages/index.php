@@ -21,11 +21,10 @@
 			</div>
 		</div>
 		<div class="wrapper">
-			
-			<section>
+			<section id="first">
 				<div class="col-60">
 					<div class="row flex">
-						<div class="col col-30">
+						<div class="col col-36">
 							<h2>Die Tabak- <br/>bewertungen</h2>
 
 							<p>
@@ -37,8 +36,52 @@
 							</div>
 						</div>
 
-						<div class="col col-30">
+						<div class="col col-24">
 							<img src="/web/assets/img/content/start/holster-tobacco.png" alt="">
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<div class="col-60">
+					<div class="row flex">
+						<div class="col col-24">
+							<img src="/web/assets/img/content/start/kopfbau.png" alt="">
+						</div>
+
+						<div class="col col-36">
+							<h2>Der Kopfbau</h2>
+
+							<p>
+								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+							</p>
+
+							<div class="btn">
+								<a href="/web/pages/kopfbau/index.php">Zu den Kopfbauvarianten</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<div class="col-60">
+					<div class="row flex">
+						<div class="col col-36">
+							<h2>Die besten Wasserpfeifen</h2>
+
+							<p>
+								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+							</p>
+
+							<div class="btn">
+								<a href="/web/pages/tabakbewertung/index.php">Zu den Wasserpfeifen</a>
+							</div>
+						</div>
+
+						<div class="col col-24">
+							<img src="/web/assets/img/content/start/wasserpfeife.png" alt="">
 						</div>
 					</div>
 				</div>
