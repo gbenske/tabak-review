@@ -32,7 +32,7 @@ function highlight() {
 function showRating() {
     $(".btn.rating").click( function(event){
         $(".col .products").removeClass('showRating');
-        $(this).parent().parent().parent().parent().addClass('showRating');
+        $(this).parent().parent().addClass('showRating');
         event.stopPropagation();
     });
 
@@ -48,7 +48,7 @@ function showNote() {
     $(".btn.note").click( function(event){
         console.log('click');
         $(".col .products").removeClass('showNote');
-        $(this).parent().parent().parent().parent().addClass('showNote');
+        $(this).parent().parent().addClass('showNote');
         event.stopPropagation();
     });
 
@@ -72,9 +72,9 @@ function stickyNav() {
        $('header').addClass('sticky');
      }
      if ($(window).scrollTop() < 121) {
-         $('naheaderv').removeClass('sticky');
+         $('header').removeClass('sticky');
      }
- 
+     /*
      var section = $('section');
      var nav = $('nav');
      var nav_height = nav.outerHeight();
@@ -91,7 +91,7 @@ function stickyNav() {
          $(this).addClass('active');
          nav.find('a[href="#'+$(this).attr('id')+'"]').addClass('active');
        }
-     });
+     });*/
    });
  
  }
