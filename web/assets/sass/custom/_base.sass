@@ -45,6 +45,7 @@ body
 		font-family: Road Rage, sans-serif
 		font-size: 23px
 		margin-bottom: 42px
+		text-shadow: 0 0 20px $color-white, 0 0 0px $color-white, 0 0 0px $color-white, 0 0 20px $color-primary, 0 0 40px $color-primary, 0 0 60px $color-primary, 0 0 80px $color-primary, 0 0 100px $color-primary
 
 		@media only screen and (min-width: $tablet)
 			font-size: 60px
@@ -58,7 +59,7 @@ body
 
 	p
 		line-height: 28px
-		padding-bottom: $padding-l
+		margin-bottom: $padding-l
 
 	img
 		width: 100%
@@ -72,19 +73,21 @@ body
 			margin: 0
 
 	.btn
-		display: block
-		color: $color-white
-		padding: 12px
-		width: 100%
 		text-align: center
-		background: $gradient
-		background-size: 200% auto
+		background: transparent
 		margin-bottom: $padding-m
 		cursor: pointer
-		transition: $transition
+
+		a
+			display: table
+			color: $color-white
+			padding: 16px 36px 18px
+			border: 2px solid $color-white
+			transition: $transition
 
 		&:hover
-			background-position: right center
+			a
+				border: 2px solid $color-primary
 
 	.flex
 		display: flex
@@ -118,7 +121,7 @@ body
 				label
 					font-size: 16px
 					display: block
-					color: #FFFFFF
+					color: $color-white
 					position: absolute
 					left: 1px
 					top: 25px
@@ -133,7 +136,7 @@ body
 					transform: translateX(-50%)
 					width: 18px
 					height: 18px
-					border: solid 3px #FFFFFF
+					border: solid 3px $color-white
 					border-radius: 50%
 					z-index: 11
 				
@@ -145,7 +148,7 @@ body
 					right: 18px
 					width: 9px
 					height: 3px
-					background-color: #FFFFFF
+					background-color: $color-white
 					transform: rotate(54deg)
 					margin-top: 14px
 					margin-left: 9px
@@ -159,7 +162,7 @@ body
 					margin: 0 -60px 0 0
 					font-size: 20px
 					border: none
-					background-color: #FFFFFF
+					background-color: $color-white
 					color: #444444
 					width: 0
 					height: 60px
@@ -730,3 +733,11 @@ body
 
 .svg-container
 	display: none
+
+@-webkit-keyframes neon1 
+  from 
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px $color-primary, 0 0 70px $color-primary, 0 0 80px $color-primary, 0 0 100px $color-primary, 0 0 150px $color-primary
+  
+  to 
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px $color-primary, 0 0 35px $color-primary, 0 0 40px $color-primary, 0 0 50px $color-primary, 0 0 75px $color-primary
+  
