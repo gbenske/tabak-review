@@ -24,17 +24,21 @@
 			
 			<section>
 				<div class="col-60">
-					<div class="row">
-						<div class="col col-40">
-							<h2>Lorem Ipsum</h2>
+					<div class="row flex">
+						<div class="col col-30">
+							<h2>Die Tabak- <br/>bewertungen</h2>
 
 							<p>
 								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 							</p>
+
+							<div class="btn">
+								<a href="/web/pages/tabakbewertung/index.php">Zu den Bewertungen</a>
+							</div>
 						</div>
 
-						<div class="col col-20">
-							<img src="" alt="">
+						<div class="col col-30">
+							<img src="/web/assets/img/content/start/holster-tobacco.png" alt="">
 						</div>
 					</div>
 				</div>
