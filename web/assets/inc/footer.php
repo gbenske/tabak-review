@@ -10,7 +10,7 @@
 					var inputVal = $(this).val();
 					var resultDropdown = $(".results");
 					if(inputVal.length){
-						$.get("fetch.php", {term: inputVal}).done(function(data){
+						$.get("/web/pages/fetch.php", {term: inputVal}).done(function(data){
 							// Display the returned data in browser
 							resultDropdown.html(data);
 						});
