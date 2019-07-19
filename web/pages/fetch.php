@@ -20,7 +20,7 @@ if(isset($_REQUEST["term"])){
 ?>
 <?php if($stmts->rowCount() > 0) { ?>
 	<div id="grid" class="col-60">
-        <div id="row" class="row">
+        <div id="row" class="row flex">
             <?php foreach ($stmts as $stmt) { 
                 $sql = "SELECT f.name AS flavor
                         FROM tobacco_to_flavor tf
@@ -34,32 +34,42 @@ if(isset($_REQUEST["term"])){
                     return $value['flavor'];
                 }, $flavors);
                 ?>
-                <div class="col col-15" data-title="<?php echo $tobacco['manufacturer'] ?>">
+                <div class="col col-15" data-name="<?php echo $stmt['manufacturer'] ?>" data-rating="<?php echo $stmt['count'] ?>">
                     <div class="products">
-                        <div class="products-flipper">
-                            <div class="side front">
-                                <img src="../assets/img/comming-soon.png" alt="">
-                                <div class="listEntry">
-                                    <h2><?php echo $stmt['manufacturer'] ?></h2>
+                        <div class="img-holder">
+                            <img src="/web/assets/img/content/start/holster-tobacco.png" alt="" />
+                        </div>
+                        
+                        <div class="listEntry">
+                            <div class="products-flipper">
+                                <div class="side front">
+                                    <div class="headline">
+                                        <h2><?php echo $stmt['manufacturer'] ?></h2>
+                                    </div>
                                     <div class="tobacco"><?php echo $stmt['tobacco'] ?></div>
                                     <div class="flavor"><?php echo implode(', ', $result) ?></div>
-                                    <div class="btn rating">Bewertung anzeigen</div>
-                                    <div class="btn note">Bemerkung anzeigen</div>
+                                    <div class="btn-wrapper">
+                                        <div class="btn rating">
+                                            <span>Bewertung</span>
+                                        </div>
+                                        <div class="btn note">
+                                            <span>Bemerkung</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="side back-rating">
-                                <div class="circle">
+                                <div class="side back-rating">
                                     <h2>Bewertung</h2>
                                     <div class="rating"><?php echo $stmt['count'] ?></div>
                                 </div>
-                            </div>
 
-                            <div class="side back-note">
-                                <div class="content">
-                                    <h2>Notiz</h2>
-                                    <p class="note"><?php echo $stmt['note'] ?></p>
+                                <div class="side back-note">
+                                    <div class="content">
+                                        <h2>Notiz</h2>
+                                        <p class="note"><?php echo $stmt['note'] ?></p>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
