@@ -33,19 +33,19 @@ body
 			opacity: 1
 
 	h1 
-		font-family: Road Rage, sans-serif
-		padding: $padding-m 0 0
+		font-family: $headline
 		font-size: 28px
+		text-shadow: $text-shadow
 
 		@media only screen and (min-width: $tablet)
 			font-size: 90px
-			padding: $padding-xl 0 0
+			margin-bottom: 48px
 
 	h2 
-		font-family: Road Rage, sans-serif
+		font-family: $headline
 		font-size: 23px
 		margin-bottom: 42px
-		text-shadow: 0 0 20px $color-white, 0 0 0px $color-white, 0 0 0px $color-white, 0 0 20px $color-primary, 0 0 40px $color-primary, 0 0 60px $color-primary, 0 0 80px $color-primary, 0 0 100px $color-primary
+		text-shadow: $text-shadow
 
 		@media only screen and (min-width: $tablet)
 			font-size: 60px
@@ -192,6 +192,9 @@ body
 		width: 100%
 		margin: 0 auto
 		z-index: 10
+
+		&.sticky
+			background: #46425d
 
 		.wrapper
 			display: flex
@@ -369,6 +372,9 @@ body
 		section
 			padding: $padding-xl 0
 
+			&#first
+				padding-top: 200px
+
 			&#all-products
 				&.search
 					display: none
@@ -390,71 +396,10 @@ body
 				z-index: 0
 				visibility: hidden
 
-			.circle
-				position: absolute
-				border-radius: 50%
-				width: 200px
-				height: 200px
-				background: $color-white
-				top: 50%
-				left: 50%
-				transform: translate(-50%, -50%)
-				display: flex
-				flex-wrap: wrap
-				flex-direction: column
-				justify-content: center
-				align-items: center
-				z-index: 6
-				transition: $transition
-
-				@media only screen and (min-width: $desktop)
-					width: 250px
-					height: 250px
-
-				h2 
-					font-size: 30px
-					font-weight: 300
-					background: $gradient
-					-webkit-background-clip: text
-					-webkit-text-fill-color: transparent
-					padding-bottom: 18px
-
-					@media only screen and (min-width: $desktop)
-						font-size: 36px
-
-				.rating
-					font-size: 38px
-					font-weight: 300
-					background: $gradient
-					-webkit-background-clip: text
-					-webkit-text-fill-color: transparent
-					line-height: normal
-
-					@media only screen and (min-width: $desktop)
-						font-size: 36px
-
 		.products
 			width: 100%
 			height: 100%
-			perspective: 1000px
-			box-shadow: 0 0 4px rgba(0,0,0,0.15)
-
-			&.showRating
-				.products-flipper
-					transform: translateX(-100%) rotateY(-180deg)
-					transform-origin: center right
-
-				.back-note
-					display: none
-					
-			&.showNote
-				.products-flipper
-					transform: translateX(100%) rotateY(180deg)
-					transform-origin: center left
-
-				.back-rating
-					display: none
-
+			
 		.products-flipper
 			position: relative
 			width: 100%
@@ -470,50 +415,98 @@ body
 			backface-visibility: hidden
 
 			&.front
+				opacity: 1
+				transition: $transition
 
 			&.back-rating
 				position: absolute
 				top: 0
 				left: 0
-				background: $gradient
 				z-index: 5
 				transform: rotateY(180deg)
+
+				h2
+					text-align: center
+
+				.rating
+					font-family: $headline
+					text-align: center
+					font-size: 80px
+					text-shadow: $text-shadow
 
 			&.back-note
 				position: absolute
 				top: 0
 				left: 0
-				background: $gradient
 				z-index: 5
 				transform: rotateY(-180deg)
 
-				.content
-					color: $color-white
-					padding: $padding-l
+
+		.img-holder
+			padding: $padding-l $padding-m 
 
 		.listEntry
 			width: 100%
-			background-color: #fafafa
-			padding: $padding-l $padding-m			
+			padding: $padding-m 			
 			position: relative
-			font-weight: 200
+			border: 2px solid $color-primary
 			z-index: 5
+			perspective: 1000px
 
-			@media only screen and (min-width: $desktop)
-				height: calc(100% - 352px)
+			&.showRating
+				background: $gradient
+
+				.products-flipper
+					transform: translateX(-100%) rotateY(-180deg)
+					transform-origin: center right
+
+				.front
+					opacity: 0
+
+				.back-note
+					display: none
+					
+			&.showNote
+				background: $gradient
+
+				.products-flipper
+					transform: translateX(100%) rotateY(180deg)
+					transform-origin: center left
+
+				.front
+					opacity: 0
+
+				.back-rating
+					display: none
 
 			h2
 				font-size: 32px
-				padding-bottom: 16px
+				margin-bottom: $padding-m
 
 			.tobacco
-				font-size: 19px
-				padding-bottom: 32px
+				font-size: 18px
+				margin-bottom: $padding-m
 
 			.flavor
-				font-size: 15px
+				font-size: 16px
 				font-style: italic
-				padding-bottom: $padding-m
+				padding-bottom: $padding-l
+
+			.btn-wrapper
+				display: flex
+
+				.btn
+					font-size: 16px
+					width: 50%
+					padding: 12px
+					border: 2px solid $color-primary
+					margin-left: 4px
+
+					&:first-of-type
+						margin-left: 0
+
+					span
+						display: inline-block
 
 		&#login
 			background: url('../../img/hero/hero-02.jpg')
@@ -670,7 +663,6 @@ body
 
 	.search-form
 		position: fixed
-		left: 0
 		right: 42px
 		bottom: 50px
 		display: flex
@@ -682,53 +674,67 @@ body
 			width: 0
 			height: 100%
 			right: 0
-			border: none
-			border-top-right-radius: 30px
-			border-bottom-right-radius: 30px
+			border: 2px solid $color-primary
+			background: $color-dark-purple
+			color: $color-white
 			transition: $transition
 			z-index: -1
+
+			&::placeholder
+				color: $color-white
+				opacity: 1
 
 			&.active
 				width: 375px
 				padding: 12px
-				border: 2px solid #ccc
 
 		figure
-			border-radius: 50%
-			background: #ccc
-			padding: 12px
+			background: $gradient
+			padding: 12px 12px 10px
 			cursor: pointer
+
 			svg
 				width: 20px
 				height: 20px
 
-	fieldset
-		border: none
+				use
+					fill: $color-white
 
-		legend
-			font-size: 24px
-			margin-bottom: 24px
+	.sort-form
+		padding-top: 100px
 
-		.sort-options
-			margin: 0 -12px
+		fieldset
+			border: none
+			text-align: center
 
-		label
-			cursor: pointer
-			padding: 12px
-			transition: $transition
+			legend
+				font-family: $headline
+				font-size: 34px
+				margin: 0 auto 48px
+				display: block
+				text-shadow: $text-shadow
 
-			&:hover
-				background: $gradient
-				color: $color-white
+			label
+				cursor: pointer
+				padding: 12px 24px
+				transition: $transition
+				border: 2px solid $color-primary
+				margin-left: 24px
+				background: transparent
+				transition: $transition
 
-			&.active
-				background: $gradient
-				color: $color-white
+				&:hover
+					color: $color-white
+					background: $gradient
 
-		input[type=radio]
-			position: absolute
-			clip: rect(0, 0, 0, 0)
-			pointer-events: none
+				&.active
+					color: $color-white
+					background: $gradient
+
+			input[type=radio]
+				position: absolute
+				clip: rect(0, 0, 0, 0)
+				pointer-events: none
 
 
 .svg-container
