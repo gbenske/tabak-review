@@ -1,5 +1,5 @@
 <?php 
-	$json = file_get_contents(__DIR__ . "/../../rev-manifest.json");
+	$json = file_get_contents(__DIR__ . "/../../../rev-manifest.json");
     $assets = json_decode($json, true);
 ?>
 
@@ -22,7 +22,7 @@ if(isset($_GET['login'])) {
     //Überprüfung des Passworts
     if ($user !== false && password_verify($passwort, $user['passwort'])) {
         $_SESSION['userid'] = $user['id'];
-        header("Location: index.php");
+        header("Location: /../../web/pages/index.php");
     } else {
         $errorMessage = "Benutzername oder Passwort war ungültig";
     }
@@ -31,25 +31,30 @@ if(isset($_GET['login'])) {
 ?>
 
 <main id="login"> 
-    <div class="wrapper">
-        <h1>Anmelden</h1>
-        <div class="login-mask">
-            <form action="?login" method="post">
-                <input type="text" name="name" placeholder="Benutzername">
-                <input type="password" name="passwort" placeholder="Passwort">
-                <br>
+    <div class="hero video">
+        <video autoplay loop muted>
+            <source src="/web/assets/video/hero-video-start.mp4" type="video/mp4"> 
+        </video>
+        <div class="wrapper">
+            <h1 class="center">Anmelden</h1>
+            <div class="login-mask">
+                <form action="?login" method="post">
+                    <input type="text" name="name" placeholder="Benutzername">
+                    <input type="password" name="passwort" placeholder="Passwort">
+                    <br>
 
-                <div class="submit-container">
-                    <input type="submit" value="Anmelden">
-                </div>
-                
-            </form>
+                    <div class="submit-container">
+                        <input type="submit" value="Anmelden">
+                    </div>
+                    
+                </form>
 
-            <?php
-                if(isset($errorMessage)) {
-                    echo $errorMessage;
-                }
-            ?>
+                <?php
+                    if(isset($errorMessage)) {
+                        echo $errorMessage;
+                    }
+                ?>
+            </div>
         </div>
     </div>
 </main>
