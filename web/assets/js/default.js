@@ -31,14 +31,14 @@ function highlight() {
 /*Show Rating of Tobacco */
 function showRating() {
     $(".btn.rating").click( function(event){
-        $(".col .products").removeClass('showRating');
-        $(this).parent().parent().addClass('showRating');
+        $(".col .listEntry").removeClass('showRating');
+        $(this).parent().parent().parent().parent().addClass('showRating');
         event.stopPropagation();
     });
 
     $(document).click(function(event){
         if (!$(event.target).hasClass('showRating')) {
-            $(".col .products").removeClass("showRating");
+            $(".col .listEntry").removeClass("showRating");
         }
     });
 }
@@ -47,14 +47,14 @@ function showRating() {
 function showNote() {
     $(".btn.note").click( function(event){
         console.log('click');
-        $(".col .products").removeClass('showNote');
-        $(this).parent().parent().addClass('showNote');
+        $(".col .listEntry").removeClass('showNote');
+        $(this).parent().parent().parent().parent().addClass('showNote');
         event.stopPropagation();
     });
 
     $(document).click(function(event){
         if (!$(event.target).hasClass('showNote')) {
-            $(".col .products").removeClass("showNote");
+            $(".col .listEntry").removeClass("showNote");
         }
     });
 }
