@@ -10,12 +10,12 @@
 					?>
 					<nav>
 						<ul>
-							<li><a href="index.php">Start</a></li>
-							<li><a href="tabakbewertung/index.php">Tabakbewertung</a></li>
-							<li><a href="kopfbau/index.php">Kopfbau</a></li>
-							<li><a href="beste-wasserpfeifen/index.php">Beste Wasserpfeifen</a></li>
-							<li><a href='tabak-einfuegen/index.php'>Tabak einfügen</a></li>
-							<li><a href='anmelden/logout.php'>Abmelden</a></li>
+							<li><a href="/web/pages/index.php">Start</a></li>
+							<li><a href="/web/pages/tabakbewertung/index.php">Tabakbewertung</a></li>
+							<li><a href="/web/pages/kopfbau/index.php">Kopfbau</a></li>
+							<li><a href="/web/pages/beste-wasserpfeifen/index.php">Beste Wasserpfeifen</a></li>
+							<li><a href='/web/pages/tabak-einfuegen/index.php'>Tabak einfügen</a></li>
+							<li><a href='/web/pages/anmelden/logout.php'>Abmelden</a></li>
 						</ul>
 					</nav>
 						
@@ -24,11 +24,11 @@
 					?>
 						<nav>
 							<ul>
-								<li><a href="index.php">Start</a></li>
-								<li><a href="tabakbewertung/index.php">Tabakbewertung</a></li>
-								<li><a href="kopfbau/index.php">Kopfbau</a></li>
-								<li><a href="beste-wasserpfeifen/index.php">Beste Wasserpfeifen</a></li>
-								<li><a href='anmelden/login.php'>Anmelden</a></li>
+								<li><a href="/web/pages/index.php">Start</a></li>
+								<li><a href="/web/pages/tabakbewertung/index.php">Tabakbewertung</a></li>
+								<li><a href="/web/pages/kopfbau/index.php">Kopfbau</a></li>
+								<li><a href="/web/pages/beste-wasserpfeifen/index.php">Beste Wasserpfeifen</a></li>
+								<li><a href='/web/pages/anmelden/login.php'>Anmelden</a></li>
 							</ul>
 						</nav>
 					<?php
