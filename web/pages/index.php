@@ -24,7 +24,7 @@
 			<section id="first">
 				<div class="col-60">
 					<div class="row flex">
-						<div class="col col-36">
+						<div class="col col-40">
 							<h2>Die Tabak- <br/>bewertungen</h2>
 
 							<p>
@@ -36,7 +36,7 @@
 							</div>
 						</div>
 
-						<div class="col col-24">
+						<div class="col col-20">
 							<img src="/web/assets/img/content/start/holster-tobacco.png" alt="">
 						</div>
 					</div>
