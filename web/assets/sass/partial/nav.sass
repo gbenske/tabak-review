@@ -14,7 +14,11 @@ nav
     @media #{$mobile}
         max-width: 400px
 
-    @media #{$tablet} 
+    @media #{$tablet}
+        left: auto
+        right: 0
+
+    @media #{$desktop} 
         transform: translateX(0%)
         box-shadow: none
         max-width: unset
@@ -23,7 +27,6 @@ nav
         padding: 0
         position: relative
         z-index: 1
-        box-shadow: 0 0 7px rgba(0,0,0,0.33)
 
     &.open 
         transform: translateX(0%)
@@ -38,7 +41,7 @@ nav
         width: 100%
         padding: 0 $padding-m
 
-        @media #{$tablet}
+        @media #{$desktop}
             flex-direction: row
             justify-content: flex-end
 
@@ -48,7 +51,7 @@ nav
             &:last-of-type
                 margin-bottom: 0
 
-            @media #{$tablet}
+            @media #{$desktop}
                 margin-bottom: 0
 
             a 
