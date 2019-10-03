@@ -14,8 +14,9 @@ body
 	background: $color-dark-purple
 	color: $color-white
 	word-break: break-all
+	line-height: 1.5
 
-	@media only screen and (min-width: $tablet)
+	@media #{$tablet}
 		font-size: 19px
 
 
@@ -43,7 +44,7 @@ body
 		text-shadow: $text-shadow
 		margin-bottom: 48px
 
-		@media only screen and (min-width: $tablet)
+		@media #{$tablet}
 			font-size: 90px
 
 	h2 
@@ -52,7 +53,7 @@ body
 		margin-bottom: 42px
 		text-shadow: $text-shadow
 
-		@media only screen and (min-width: $tablet)
+		@media #{$tablet}
 			font-size: 60px
 
 	ul
@@ -74,7 +75,7 @@ body
 		border-bottom: none
 		margin: $padding-l 0
 
-		@media only screen and (min-width: $desktop)
+		@media #{$desktop}
 			margin: 0
 
 	.btn
@@ -190,16 +191,20 @@ body
 		margin: 0 auto
 		padding: 0 $padding-m
 
-		@media only screen and (min-width: $desktop)
+		@media #{$desktop}
 			padding: 0
 
 	header
 		background-color: transparent
-		padding: 48px 0
+		padding: $padding-m 0
 		position: fixed
 		width: 100%
 		margin: 0 auto
 		z-index: 10
+		transition: $transition
+
+		@media #{$desktop}
+			padding: $padding-l 0
 
 		&.sticky
 			background: #46425d
@@ -217,7 +222,7 @@ body
 				z-index: 999
 				text-transform: none
 
-				@media only screen and (min-width: $tablet) 
+				@media #{$tablet} 
 					display: none
 
 				.icon 
@@ -226,8 +231,8 @@ body
 					margin-top: 10px
 					width: 28px
 					height: 3px
-					background-color: $color-primary
-					transition: all ease-in-out 0.2s
+					background-color: $color-white
+					transition: $transition
 
 					&:before 
 						content: ''
@@ -236,8 +241,8 @@ body
 						left: 0
 						width: 28px
 						height: 3px
-						background-color: $color-primary
-						transition: all ease-in-out 0.2s
+						background-color: $color-white
+						transition: $transition
 
 					&:after
 						content: ''
@@ -246,8 +251,8 @@ body
 						left: 0
 						width: 28px
 						height: 3px
-						background-color: $color-primary
-						transition: all ease-in-out 0.2s
+						background-color: $color-white
+						transition: $transition
 
 					&.cross
 						background-color: #fff
@@ -268,17 +273,18 @@ body
 				transform: translateX(100%)
 				position: fixed
 				top: 0
-				right: 0
-				width: 100%
-				max-width: 200px
+				left: 0
+				width: 100vh
 				height: 100vh
 				z-index: -1
-				background: $color-white
+				background: $color-dark-purple
 				padding: 80px 0
-				box-shadow: 0 0 7px rgba(0,0,0,0.33)
-				transition: all ease-in-out 0.2s
+				transition: $transition
 
-				@media only screen and (min-width: $tablet) 
+				@media #{$mobile}
+					max-width: 400px
+
+				@media #{$tablet} 
 					transform: translateX(0%)
 					box-shadow: none
 					max-width: unset
@@ -287,6 +293,7 @@ body
 					padding: 0
 					position: relative
 					z-index: 1
+					box-shadow: 0 0 7px rgba(0,0,0,0.33)
 
 				&.open 
 					transform: translateX(0%)
@@ -299,26 +306,34 @@ body
 					flex-wrap: wrap
 					flex-direction: column
 					width: 100%
+					padding: 0 $padding-m
 
-					@media only screen and (min-width: $tablet)
+					@media #{$tablet}
 						flex-direction: row
 						justify-content: flex-end
 
 					li 
-						border-bottom: 1px solid $color-border
+						margin-bottom: $padding-m
 
-						@media only screen and (min-width: $tablet)
-							border: none
+						&:last-of-type
+							margin-bottom: 0
+
+						@media #{$tablet}
+							margin-bottom: 0
+
 						a 
 							color: $color-white
-							margin-left: 48px
-							font-size: 16px
+							font-size: 23px
 							font-weight: 700
 							display: block
-							transition: all ease-in-out 0.2s
+							transition: $transition
 
-							&:hover
-								color: $color-secondary
+							@media #{$tablet}
+								font-size: 16px
+								margin-left: 48px
+
+								&:hover
+									color: $color-secondary
 
 
 						&:last-child
@@ -327,8 +342,11 @@ body
 
 	.hero
 		width: 100%
-		height: 100vh
+		height: 100%
 		position: relative
+
+		@media #{$tablet}
+			height: 100vh
 
 		&.video
 			&:before
@@ -346,22 +364,28 @@ body
 				opacity: 1
 
 			video
+				position: relative
 				width: 100%
 				height: auto
-				position: absolute
-				top: 0
-				left: 0
+				
+				@media #{$tablet}
+					position: absolute
+					top: 0
+					left: 0
 
 				
 			.wrapper
-				height: 100%
+				position: absolute
+				top: 50%
+				padding: 0
+				transform: translateY(-50%)
+				z-index: 3
+
 				.entrance
-					position: absolute
-					left: 0
-					top: 50%
-					right: 0
-					transform: translateY(-50%)
-					z-index: 5
+					position: relative
+
+					h1
+						margin-bottom: 0
 
 	main
 		.caption
@@ -380,13 +404,13 @@ body
 		section
 			padding: $padding-l 0
 
-			@media only screen and (min-width: $desktop)
+			@media #{$desktop}
 				padding: $padding-xl 0
 
 			&#first
 				padding-top: 100px
 
-				@media only screen and (min-width: $desktop)
+				@media #{$desktop}
 					padding-top: 200px
 
 			&#all-products
@@ -459,7 +483,7 @@ body
 		.img-holder
 			padding: $padding-l
 
-			@media only screen and (min-width: $tablet)
+			@media #{$tablet}
 				padding: $padding-l $padding-m 
 
 		.listEntry
@@ -613,7 +637,7 @@ body
 		&.addTabak
 			padding-top: $padding-l
 
-			@media only screen and (min-width: $tablet)
+			@media #{$tablet}
 				padding-top: $padding-xl
 
 			section
@@ -624,7 +648,7 @@ body
 				transition: $transition
 				padding: $padding-s 0
 
-				@media only screen and (min-width: $tablet)
+				@media #{$tablet}
 					padding: $padding-xl 0
 
 				&.active
@@ -632,14 +656,14 @@ body
 					background: $color-white
 					z-index: 10
 
-					@media only screen and (min-width: $tablet)
+					@media #{$tablet}
 						padding: $padding-xl $padding-l
 
 			.submit-container
 				width: 100%
 				margin-top: auto
 
-				@media only screen and (min-width: $tablet)
+				@media #{$tablet}
 					max-width: 370px
 
 				input
@@ -653,7 +677,7 @@ body
 				border: 2px solid $color-border
 				color: $color-dark-grey
 
-				@media only screen and (min-width: $mobile)
+				@media #{$mobile}
 					padding: $padding-s
 
 			select
@@ -734,7 +758,7 @@ body
 				background: transparent
 				transition: $transition
 
-				@media only screen and (min-width: $desktop)
+				@media #{$desktop}
 					display: inline
 					margin: 0 0 24px 24px
 
