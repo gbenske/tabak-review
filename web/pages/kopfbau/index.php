@@ -10,16 +10,16 @@
 	include_once $_SERVER['DOCUMENT_ROOT'] . "/web/assets/inc/header.php";
 ?>
 	<main>
+	<div class="hero img kopfbau">
+			<div class="wrapper">
+				<div class="entrance">
+				<h1 class="center">Der Kopfbau und deren Varianten</h1>
+				</div>
+			</div>
+		</div>
+
 		<div class="wrapper">
 			<section id="first">
-				<h1 class="center">Der Kopfbau und deren Varianten</h1>
-
-				<p>
-					Es gibt eine Menge Varianten wie man den Kopf baut. Hier stelle ich vier verschiedene Kopfbauarten vor, die ich über die Jahre getestet habe und die ich als gut empfinde.
-				</p>
-			</section>
-
-			<section>
 				<div class="col-60">
 					<div class="row flex">
 						<div class="col col-24">
@@ -47,7 +47,7 @@
 
 			<section>
 				<div class="col-60">
-					<div class="row flex reverse">
+					<div class="row flex">
 						<div class="col col-36">
 							<h2>Der SWT Setup</h2>
 
@@ -63,8 +63,8 @@
 								Vorteil bei dem Kopfbau ist, das man zu einem eine Kohle spart, die Kohle nicht abäschen muss und im Sommer sogar einen Windschutz hat. Die Rauchzeit beträgt hier 1 - 1,5 Stunden, je nachdem was für Kohlen man benutzt, welchen Tabak man raucht und mit vielen Personen man an der Pfeife zieht.
 							</p>
 
-							<div class="btn">
-								<a href="https://www.youtube.com/watch?v=rLAfBALSUIo" target="_blank">Zum SWT Setup</a>
+							<div class="btn-container margin-top">
+								<a class="btn" href="https://www.youtube.com/watch?v=rLAfBALSUIo" target="_blank">Zum SWT Setup</a>
 							</div>
 						</div>
 
