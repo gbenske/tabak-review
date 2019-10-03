@@ -13,7 +13,7 @@ body
 	font-family: 'Raleway', sans-serif
 	font-size: 16px
 	position: relative
-	background: $color-dark-purple
+	background: #1a1a1a
 	color: $color-white
 	line-height: 1.5
 
@@ -49,6 +49,10 @@ body
 	p
 		line-height: 28px
 		margin-bottom: $padding-l
+
+		&:last-of-type
+			margin-bottom: 0
+			
 
 	img
 		width: 100%
@@ -202,21 +206,14 @@ body
 				padding: $padding-xl 0
 
 		.col
-			&:after
-				content: ''
-				position: absolute
-				top: 0
-				left: 0
-				width: 100%
-				height: 100%
-				background: $gradient
-				transition: $transition
-				z-index: 0
-				visibility: hidden
+			&.col-15
+				display: flex
+				flex-direction: column
 
 		.products
 			width: 100%
 			height: 100%
+			flex: 1
 			
 		.products-flipper
 			position: relative
