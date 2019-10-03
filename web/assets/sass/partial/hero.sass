@@ -6,6 +6,26 @@
     @media #{$desktop}
         height: 100vh
 
+    .wrapper
+        position: absolute
+        top: 50%
+        left: 0
+        padding: 0
+        transform: translateY(-50%)
+        z-index: 3
+
+        @media #{$desktop}
+            left: 50%
+            transform: translate(-50%, -50%)
+
+        .entrance
+            position: relative
+
+            h1
+                margin-bottom: 0
+                word-wrap: none
+                word-break: normal
+
     &.video
         &:before
             content: ""
@@ -32,22 +52,38 @@
                 left: 0
 
             
-        .wrapper
+
+    &.img
+        height: 80vh
+
+        &:before
+            content: ""
+            display: block
             position: absolute
-            top: 50%
+            top: 0
             left: 0
-            padding: 0
-            transform: translateY(-50%)
-            z-index: 3
+            right: 0
+            bottom: 0
+            height: 100%
+            width: 100%
+            z-index: 1
+            background-color: rgba(0,0,0,0.4)
+            opacity: 1
+        
+        &:after
+            content: ''
+            position: absolute
+            top: 0
+            left: 0
+            right: 0
+            background-position: center center
+            background-repeat: no-repeat
+            background-size: cover
+            width: 100%
+            height: 100%
+            z-index: -1
 
-            @media #{$desktop}
-                left: 50%
-                transform: translate(-50%, -50%)
-
-            .entrance
-                position: relative
-
-                h1
-                    margin-bottom: 0
-                    word-wrap: none
-                    word-break: normal
+        &.kopfbau
+            &:after
+                background-image: url('/web/assets/img/content/kopfbau/hero/hero.jpg')
+                
