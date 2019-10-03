@@ -9,10 +9,15 @@ body
 
 body
 	font-family: 'Raleway', sans-serif
-	font-size: 19px
+	font-size: 16px
 	position: relative
 	background: $color-dark-purple
 	color: $color-white
+	word-break: break-all
+
+	@media only screen and (min-width: $tablet)
+		font-size: 19px
+
 
 	&:before 
 		content: ""
@@ -34,16 +39,16 @@ body
 
 	h1 
 		font-family: $headline
-		font-size: 28px
+		font-size: 36px
 		text-shadow: $text-shadow
+		margin-bottom: 48px
 
 		@media only screen and (min-width: $tablet)
 			font-size: 90px
-			margin-bottom: 48px
 
 	h2 
 		font-family: $headline
-		font-size: 23px
+		font-size: 26px
 		margin-bottom: 42px
 		text-shadow: $text-shadow
 
@@ -91,6 +96,9 @@ body
 
 	.flex
 		display: flex
+
+	.reverse
+		flex-direction: column-reverse
 
 	.center
 		text-align: center
@@ -370,10 +378,16 @@ body
 			text-decoration: underline
 
 		section
-			padding: $padding-xl 0
+			padding: $padding-l 0
+
+			@media only screen and (min-width: $desktop)
+				padding: $padding-xl 0
 
 			&#first
-				padding-top: 200px
+				padding-top: 100px
+
+				@media only screen and (min-width: $desktop)
+					padding-top: 200px
 
 			&#all-products
 				&.search
@@ -443,7 +457,10 @@ body
 
 
 		.img-holder
-			padding: $padding-l $padding-m 
+			padding: $padding-l
+
+			@media only screen and (min-width: $tablet)
+				padding: $padding-l $padding-m 
 
 		.listEntry
 			width: 100%
@@ -530,10 +547,6 @@ body
 				transform: translate(-50%, -50%)
 				z-index: 10
 				height: auto
-
-			h1
-				background: transparent
-				-webkit-text-fill-color: $color-white
 
 			.login-mask
 				padding-top: $padding-l
@@ -712,13 +725,18 @@ body
 				text-shadow: $text-shadow
 
 			label
+				display: block
 				cursor: pointer
 				padding: 12px 24px
 				transition: $transition
 				border: 2px solid $color-primary
-				margin-left: 24px
+				margin: 0 0 24px
 				background: transparent
 				transition: $transition
+
+				@media only screen and (min-width: $desktop)
+					display: inline
+					margin: 0 0 24px 24px
 
 				&:hover
 					color: $color-white

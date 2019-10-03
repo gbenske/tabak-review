@@ -99,7 +99,7 @@ function stickyNav() {
 $( document ).ready(function() {
 	mobileNav();
     closeMobileNav();
-    highlight();
+    // highlight();
     showRating();
     showNote();
     searchBox();

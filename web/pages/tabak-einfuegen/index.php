@@ -1,6 +1,6 @@
 <?php 
-	$json = file_get_contents(__DIR__ . "/../../rev-manifest.json");
-    $assets = json_decode($json, true);
+	//$json = file_get_contents(__DIR__ . "/../../../rev-manifest.json");
+    //$assets = json_decode($json, true);
 ?>
 
 <?php 
@@ -72,38 +72,39 @@
 }
 ?>
 
-<div class="parallax-hero addTabak" id="parallax-hero"></div>
-
 <main id="addTabak">
     <div class="wrapper" id="form">
-        <h1>Neuen Tabak hinzufügen</h1>
+        <section id="first">
+            <h1>Neuen Tabak hinzufügen</h1>
 
-        <form class="addTabak" action="?rating" method="post" enctype="multipart/form-data">
-        
-            <div class="grid row-6">
+            <form class="addTabak" action="?rating" method="post" enctype="multipart/form-data">
+            <?php /*
+                <div class="grid row-6">
+                    <section>
+                        <h2>Hersteller hinzufügen</h2>
+                        <input type="text" name="addManufacturer" placeholder="Hersteller"/>
+                        
+                        <div class="submit-container">
+                            <input type="submit" value="Hersteller hinzufügen" />
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Geschmack hinzufügen</h2>
+                        <input type="text" name="addFlavor" placeholder="Geschmack"/>
+
+                        <div class="submit-container">
+                            <input type="submit" value="Geschmack hinzufügen" />
+                        </div>
+                    </section>
+                </div>
+
+                <hr>
+
+                */?>
+
+            <div>
                 <section>
-                    <h2>Hersteller hinzufügen</h2>
-                    <input type="text" name="addManufacturer" placeholder="Hersteller"/>
-                    
-                    <div class="submit-container">
-                        <input type="submit" value="Hersteller hinzufügen" />
-                    </div>
-                </section>
-
-                <section>
-                    <h2>Geschmack hinzufügen</h2>
-                    <input type="text" name="addFlavor" placeholder="Geschmack"/>
-
-                    <div class="submit-container">
-                        <input type="submit" value="Geschmack hinzufügen" />
-                    </div>
-                </section>
-            </div>
-
-            <hr>
-
-           <div class="grid row-6">
-               <section>
                     <h2>Hersteller auswählen</h2>
                         <select name="chooseManufacturer">
                             <option disabled selected value=""> -- Wähle einen Hersteller aus -- </option>
@@ -112,7 +113,7 @@
                             <?php endforeach ?>
                         </select>
                     
-                    <h2>Tabaksorten</h2>
+                    <h2>Name der Sorte</h2>
                     <input type="text" name="addTobacco" />
 
                     <h2>Bild hinzufügen</h2>
@@ -121,58 +122,62 @@
                     <div class="submit-container">
                         <input type="submit" value="Tabaksorte hinzufügen" />
                     </div>
-               </section>
+                </section>
 
-               <section>
-                    <h2>Tabaksorte auswählen</h2>
-                        <select name="chooseTobacco"> 
-                            <option disabled selected value=""> -- Wähle eine Tabaksorte aus -- </option>
-                            <?php foreach ($tobaccoSort as $sort): ?>
-                                <option value="<?= $sort['id']; ?>"><?= $sort['name']; ?></option>
-                            <?php endforeach ?>
-                        </select>
+                <?php /*
 
-                    <h2>Geschmack auswählen</h2>
-                        <select name="chooseFlavor">
-                            <option disabled selected value=""> -- Wähle einen Geschmack aus -- </option>
-                            <?php foreach ($tobaccoFlavor as $flavor): ?>
-                                <option value="<?= $flavor['id']; ?>"><?= $flavor['name']; ?></option>
-                            <?php endforeach ?>
-                        </select>
+                <section>
+                        <h2>Tabaksorte auswählen</h2>
+                            <select name="chooseTobacco"> 
+                                <option disabled selected value=""> -- Wähle eine Tabaksorte aus -- </option>
+                                <?php foreach ($tobaccoSort as $sort): ?>
+                                    <option value="<?= $sort['id']; ?>"><?= $sort['name']; ?></option>
+                                <?php endforeach ?>
+                            </select>
 
-                    <div class="submit-container">   
-                        <input type="submit" value="Geschmach der Tabaksorte hinzufügen" />
-                    </div>
-               </section>
-           </div>
+                        <h2>Geschmack auswählen</h2>
+                            <select name="chooseFlavor">
+                                <option disabled selected value=""> -- Wähle einen Geschmack aus -- </option>
+                                <?php foreach ($tobaccoFlavor as $flavor): ?>
+                                    <option value="<?= $flavor['id']; ?>"><?= $flavor['name']; ?></option>
+                                <?php endforeach ?>
+                            </select>
 
-            <hr>
-
-            <div class="grid row-6">
-               <section>
-                    <h2>Tabaksorte auswählen</h2>
-                        <select name="chooseTobaccoRating"> 
-                            <option disabled selected value=""> -- Wähle eine Tabaksorte aus -- </option>
-                            <?php foreach ($tobaccoSort as $sort): ?>
-                                <option value="<?= $sort['id']; ?>"><?= $sort['name']; ?></option>
-                            <?php endforeach ?>
-                        </select>
-                    
-                    <h2>Bewertung abgeben</h2>
-                    <input type="text" name="addRating" />
-    
-                    <h2>Notiz hinzufügen</h2>
-                    <textarea name="addNote" cols="30" rows="10"></textarea>
-                    
-                    <div class="submit-container">   
-                        <input type="submit" value="Bewertung abgeben" />
-                    </div>                         
-               </section>
+                        <div class="submit-container">   
+                            <input type="submit" value="Geschmach der Tabaksorte hinzufügen" />
+                        </div>
+                </section>
             </div>
 
-        </form>
-    </div>
+                <hr>
 
+                <div class="grid row-6">
+                <section>
+                        <h2>Tabaksorte auswählen</h2>
+                            <select name="chooseTobaccoRating"> 
+                                <option disabled selected value=""> -- Wähle eine Tabaksorte aus -- </option>
+                                <?php foreach ($tobaccoSort as $sort): ?>
+                                    <option value="<?= $sort['id']; ?>"><?= $sort['name']; ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        
+                        <h2>Bewertung abgeben</h2>
+                        <input type="text" name="addRating" />
+        
+                        <h2>Notiz hinzufügen</h2>
+                        <textarea name="addNote" cols="30" rows="10"></textarea>
+                        
+                        <div class="submit-container">   
+                            <input type="submit" value="Bewertung abgeben" />
+                        </div>                         
+                </section>
+                </div>
+
+                */?>
+
+            </form>
+        </section>
+    </div>
 </main
 
 <?php 

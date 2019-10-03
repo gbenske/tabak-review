@@ -10,7 +10,7 @@
         } else {
             if(is_uploaded_file($_FILES['image']['tmp_name'])){ 
                 
-                $folder = "../assets/img/content/"; 
+                $folder = "../../assets/img/content/tabaksorten/"; 
                 $file = basename( $_FILES['image']['name']); 
                 $full_path = $folder.$file; 
         
@@ -19,9 +19,8 @@
                         // Schreibe Tabaksorte zu entsprechenden Hersteller
                         if(isset($_POST['chooseManufacturer'])) {
                             $statement = $pdo->prepare("INSERT INTO tobacco (name, id_manufacturer, image) VALUES (:name, :id_manufacturer, :image)");
-                            $result = $statement->execute(array('name' => $addTobacco, 'id_manufacturer' => $chooseManufacturer, 'image '=> $full_path));
-
-
+                            $result = $statement->execute(array('name' => $addTobacco, 'id_manufacturer' => $chooseManufacturer, 'image' => $file));
+                            
                         if (isset($_POST['addTobacco'])) {
                             if($result) { 
                                 echo 'Tabaksorte wurde hinzufügt.';
