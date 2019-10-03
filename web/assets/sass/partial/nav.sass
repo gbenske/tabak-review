@@ -1,0 +1,71 @@
+nav 
+    display: flex
+    transform: translateX(100%)
+    position: fixed
+    top: 0
+    left: 0
+    width: 100vh
+    height: 100vh
+    z-index: -1
+    background: $color-dark-purple
+    padding: 80px 0
+    transition: $transition
+
+    @media #{$mobile}
+        max-width: 400px
+
+    @media #{$tablet} 
+        transform: translateX(0%)
+        box-shadow: none
+        max-width: unset
+        height: auto
+        background: transparent
+        padding: 0
+        position: relative
+        z-index: 1
+        box-shadow: 0 0 7px rgba(0,0,0,0.33)
+
+    &.open 
+        transform: translateX(0%)
+        -moz-transform: translateX(0%)
+        -webkit-transform: translateX(0%)
+        -ms-transform: translateX(0%)
+
+    ul
+        display: flex
+        flex-wrap: wrap
+        flex-direction: column
+        width: 100%
+        padding: 0 $padding-m
+
+        @media #{$tablet}
+            flex-direction: row
+            justify-content: flex-end
+
+        li 
+            margin-bottom: $padding-m
+
+            &:last-of-type
+                margin-bottom: 0
+
+            @media #{$tablet}
+                margin-bottom: 0
+
+            a 
+                color: $color-white
+                font-size: 23px
+                font-weight: 700
+                display: block
+                transition: $transition
+
+                @media #{$tablet}
+                    font-size: 16px
+                    margin-left: 48px
+
+                    &:hover
+                        color: $color-secondary
+
+
+            &:last-child
+                a
+                    padding-right: 0

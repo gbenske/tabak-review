@@ -1,0 +1,73 @@
+header
+    background-color: transparent
+    padding: $padding-m 0
+    position: fixed
+    width: 100%
+    margin: 0 auto
+    z-index: 10
+    transition: $transition
+
+    @media #{$desktop}
+        padding: $padding-l 0
+
+    &.sticky
+        background: #46425d
+
+    .wrapper
+        display: flex
+        flex-wrap: wrap
+        justify-content: flex-end
+
+        .hamburger 
+            width: 28px
+            height: 28px
+            cursor: pointer
+            align-self: center
+            z-index: 999
+            text-transform: none
+
+            @media #{$tablet} 
+                display: none
+
+            .icon 
+                position: absolute
+                margin-left: 2px
+                margin-top: 10px
+                width: 28px
+                height: 3px
+                background-color: $color-white
+                transition: $transition
+
+                &:before 
+                    content: ''
+                    position: absolute
+                    top: -8px
+                    left: 0
+                    width: 28px
+                    height: 3px
+                    background-color: $color-white
+                    transition: $transition
+
+                &:after
+                    content: ''
+                    position: absolute
+                    top: 8px
+                    left: 0
+                    width: 28px
+                    height: 3px
+                    background-color: $color-white
+                    transition: $transition
+
+                &.cross
+                    background-color: #fff
+                    height: 0
+
+                    &:before
+                        top: 0
+                        -webkit-transform: rotate(-45deg)
+                        transform: rotate(-45deg)
+                    
+                    &:after
+                        top: 0
+                        -webkit-transform: rotate(45deg)
+                        transform: rotate(45deg)
