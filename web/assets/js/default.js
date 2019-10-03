@@ -68,10 +68,10 @@ function searchBox() {
 function stickyNav() {
     /*Sticky nav*/
    $(window).scroll(function () {
-     if($(window).scrollTop() > 120){
+     if($(window).scrollTop() > 50){
        $('header').addClass('sticky');
      }
-     if ($(window).scrollTop() < 121) {
+     if ($(window).scrollTop() < 51) {
          $('header').removeClass('sticky');
      }
      /*
