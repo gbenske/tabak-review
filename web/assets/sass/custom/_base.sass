@@ -15,7 +15,6 @@ body
 	position: relative
 	background: $color-dark-purple
 	color: $color-white
-	word-break: break-all
 	line-height: 1.5
 
 	@media #{$tablet}
@@ -257,6 +256,9 @@ body
 				z-index: 5
 				transform: rotateY(-180deg)
 
+				h2
+					text-align: center
+
 
 		.img-holder
 			padding: $padding-l
@@ -320,6 +322,7 @@ body
 					padding: 12px
 					border: 2px solid $color-primary
 					margin-left: 4px
+					text-align: center
 
 					&:first-of-type
 						margin-left: 0
@@ -475,7 +478,7 @@ body
 
 	.search-form
 		position: fixed
-		right: 42px
+		right: $padding-m
 		bottom: 50px
 		display: flex
 		justify-content: flex-end
@@ -497,8 +500,11 @@ body
 				opacity: 1
 
 			&.active
-				width: 375px
+				width: 327px
 				padding: 12px
+
+				@media #{$mobile}
+					width: 375px
 
 		figure
 			background: $gradient
