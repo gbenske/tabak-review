@@ -35,9 +35,14 @@
         .wrapper
             position: absolute
             top: 50%
+            left: 0
             padding: 0
             transform: translateY(-50%)
             z-index: 3
+
+            @media #{$desktop}
+                left: 50%
+                transform: translate(-50%, -50%)
 
             .entrance
                 position: relative
