@@ -535,32 +535,37 @@ body
 				display: block
 				text-shadow: $text-shadow
 
-			label
-				display: block
-				cursor: pointer
-				padding: 12px 24px
-				transition: $transition
-				border: 2px solid $color-primary
-				margin: 0 0 24px
-				background: transparent
-				transition: $transition
+			.sort-options
+				@media #{$tablet}
+					display: flex
+					justify-content: space-between
 
-				@media #{$desktop}
-					display: inline
-					margin: 0 0 24px 24px
+				label
+					display: block
+					cursor: pointer
+					padding: 12px 24px
+					transition: $transition
+					border: 2px solid $color-primary
+					margin: 0 0 $padding-m
+					background: transparent
+					transition: $transition
 
-				&:hover
-					color: $color-white
-					background: $gradient
+					@media #{$tablet}
+						width: 33.33%
+						margin: 0 $padding-s $padding-m
 
-				&.active
-					color: $color-white
-					background: $gradient
+					&:hover
+						color: $color-white
+						background: $gradient
 
-			input[type=radio]
-				position: absolute
-				clip: rect(0, 0, 0, 0)
-				pointer-events: none
+					&.active
+						color: $color-white
+						background: $gradient
+
+				input[type=radio]
+					position: absolute
+					clip: rect(0, 0, 0, 0)
+					pointer-events: none
 
 
 .svg-container
