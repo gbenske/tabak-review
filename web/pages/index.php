@@ -31,8 +31,8 @@
 								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 							</p>
 
-							<div class="btn">
-								<a href="/web/pages/tabakbewertung/index.php">Zu den Bewertungen</a>
+							<div class="btn-container">
+								<a class="btn" href="/web/pages/tabakbewertung/index.php">Zu den Bewertungen</a>
 							</div>
 						</div>
 
@@ -57,8 +57,8 @@
 								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 							</p>
 
-							<div class="btn">
-								<a href="/web/pages/kopfbau/index.php">Zu den Kopfbauvarianten</a>
+							<div class="btn-container">
+								<a class="btn" href="/web/pages/kopfbau/index.php">Zu den Kopfbauvarianten</a>
 							</div>
 						</div>
 					</div>
@@ -75,8 +75,8 @@
 								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 							</p>
 
-							<div class="btn">
-								<a href="/web/pages/tabakbewertung/index.php">Zu den Wasserpfeifen</a>
+							<div class="btn-container">
+								<a class="btn" href="/web/pages/tabakbewertung/index.php">Zu den Wasserpfeifen</a>
 							</div>
 						</div>
 
